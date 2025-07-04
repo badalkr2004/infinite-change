@@ -232,10 +232,7 @@ const Index = () => {
                     <p className="text-muted-foreground leading-relaxed">
                       {service.description}
                     </p>
-                    <Button
-                      variant="ghost"
-                      className="text-primary hover:text-primary-foreground hover:bg-primary"
-                    >
+                    <Button>
                       Learn More <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </CardContent>
@@ -343,20 +340,10 @@ const Index = () => {
             transition={{ duration: 0.6, delay: 0.6 }}
             viewport={{ once: true }}
           >
-            <Button
-              asChild
-              size="lg"
-              variant="secondary"
-              className="text-lg px-8 bg-background text-foreground hover:bg-background/90"
-            >
+            <Button asChild size="lg">
               <Link href="/contact">Get Started Today</Link>
             </Button>
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="text-lg px-8 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
-            >
+            <Button asChild size="lg">
               <Link href="/about">Learn More About Us</Link>
             </Button>
           </motion.div>
