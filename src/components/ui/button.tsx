@@ -5,20 +5,17 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[10px] text-sm font-medium font-avenir-regular ring-offset-background transition-all duration-300 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border-[3px]",
+  "inline-flex items-center justify-center gap-[10px] whitespace-nowrap rounded-[10px] text-sm font-medium font-avenir-regular ring-offset-background transition-all duration-300 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border-[5px] bg-[#2C3746] text-white border-[#273548] hover:bg-[#DC842E] hover:border-[#DC842E]",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90 border-primary hover:border-primary/90",
-        destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90 border-destructive hover:border-destructive/90",
-        outline:
-          "border-primary bg-background text-primary hover:bg-primary hover:text-primary-foreground",
-        secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80 border-secondary hover:border-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground border-transparent hover:border-accent",
-        link: "text-primary underline-offset-4 hover:underline border-transparent",
-        accent: "bg-accent text-accent-foreground hover:bg-accent/90 border-accent hover:border-accent/90",
+        default: "bg-[#2C3746] text-white border-[#273548] hover:bg-[#DC842E] hover:border-[#DC842E]",
+        destructive: "bg-[#2C3746] text-white border-[#273548] hover:bg-[#DC842E] hover:border-[#DC842E]",
+        outline: "border-[#273548] bg-[#2C3746] text-white hover:bg-[#DC842E] hover:border-[#DC842E] hover:text-white",
+        secondary: "bg-[#2C3746] text-white border-[#273548] hover:bg-[#DC842E] hover:border-[#DC842E]",
+        ghost: "hover:bg-[#DC842E] hover:text-white border-transparent hover:border-[#DC842E]",
+        link: "text-white underline-offset-4 hover:underline border-transparent",
+        accent: "bg-[#DC842E] text-white hover:bg-[#DC842E] border-[#DC842E] hover:border-[#DC842E]",
       },
       size: {
         default: "h-12 px-6 py-3",
@@ -44,11 +41,19 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : "button"
     return (
-      <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
-        ref={ref}
-        {...props}
-      />
+      <span
+        className="inline-block p-[10px] bg-white rounded-[10px] transition-all duration-300 group border-[5px] border-[#273548] hover:bg-[#DC842E] hover:border-[#DC842E]"
+        style={{ borderRadius: '10px' }}
+      >
+        <Comp
+          className={cn(
+            "inline-flex items-center justify-center gap-[10px] whitespace-nowrap rounded-none text-base font-medium font-avenir-regular ring-offset-background transition-all duration-300 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-[#2C3746] text-white border-none px-6 py-3 group-hover:bg-[#DC842E]",
+            className
+          )}
+          ref={ref}
+          {...props}
+        />
+      </span>
     )
   }
 )

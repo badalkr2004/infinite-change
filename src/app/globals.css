@@ -226,7 +226,20 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    background: #4A5361 !important;
+    color: #fff;
+  }
+
+  a {
+    color: #fff;
+    text-decoration: underline;
+    transition: color 0.2s;
+  }
+  a:hover {
+    color: #DC842E;
+  }
+  a:visited {
+    color: #73ABB9;
   }
 }
 

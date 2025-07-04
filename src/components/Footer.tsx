@@ -6,7 +6,10 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <footer className="bg-foreground text-background">
+    <footer
+      className=""
+      style={{ background: '#73ABB9', color: '#FFFFCC' }}
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
@@ -93,7 +96,7 @@ const Footer = () => {
           </div>
 
           {/* Newsletter */}
-          <div className="space-y-4">
+          <div className="space-y-4" style={{ background: 'transparent', color: '#FFFFCC' }}>
             <h4 className="text-lg font-semibold">Newsletter</h4>
             <p className="text-sm opacity-80">
               Subscribe to get updates on our latest programs and insights.

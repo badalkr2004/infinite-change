@@ -17,24 +17,39 @@ const Header = () => {
   ];
 
   return (
-    <header className="py-5 fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
+    <header className="py-5 fixed top-0 left-0 right-0 z-50 border-b border-border" style={{ background: '#273548' }}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3">
-            <Image
-              src="/logo-new.png"
-              alt="Infinite Change"
-              className="h-25 w-25 object-contain"
-              width={200}
-              height={200}
-            />
+            <span style={{
+              // display: 'inline-flex',
+              // alignItems: 'center',
+              // justifyContent: 'center',
+              // width: '150px',
+              // height: '150px',
+              // borderRadius: '50%',
+              // background: '#273548',
+              // boxShadow: '0 0 32px 8px #FFFFCC',
+              // position: 'relative',
+            }}>
+              <Image
+                src="/logo-new.png"
+                alt="Infinite Change"
+                className="h-36 w-36 object-contain"
+                width={144}
+                height={144}
+                style={{
+                  filter: 'drop-shadow(0 0 12px #FFFFCC)'
+                }}
+              />
+            </span>
             <div className="hidden sm:block">
-              <h1 className="text-xl font-bold text-foreground font-avenir-regular">
+              <h1 className="text-xl font-bold font-avenir-regular" style={{ color: '#FFFFCC' }}>
                 INFINITE CHANGE
               </h1>
-              <p className="text-xs text-muted-foreground uppercase tracking-wider font-avenir-light">
-                Coaching • Training • Development
+              <p className="text-xs uppercase tracking-wider font-avenir-light" style={{ color: '#FFFFCC' }}>
+                COACHING 2 TRAINING 2 DEVELOPMENT
               </p>
             </div>
           </Link>
@@ -45,7 +60,12 @@ const Header = () => {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-foreground hover:text-primary transition-colors font-medium"
+                className="transition-colors font-medium"
+                style={{ color: '#FFFFCC', textDecoration: 'none', fontWeight: 'bold' }}
+                onMouseOver={e => e.currentTarget.style.color = '#DC842E'}
+                onMouseOut={e => e.currentTarget.style.color = '#FFFFCC'}
+                onFocus={e => e.currentTarget.style.color = '#DC842E'}
+                onBlur={e => e.currentTarget.style.color = '#FFFFCC'}
               >
                 {item.name}
               </Link>

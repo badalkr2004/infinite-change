@@ -309,7 +309,7 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-linear-to-r from-primary to-accent">
+      <section className="py-20 px-4 sm:px-6 lg:px-8" style={{ background: '#36A9CE' , color: '#FFFFCC' }}>
         <motion.div
           className="container mx-auto text-center"
           initial={{ opacity: 0, scale: 0.9 }}
