@@ -17,7 +17,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
+    <header className="py-5 fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -25,9 +25,9 @@ const Header = () => {
             <Image
               src="/logo-new.png"
               alt="Infinite Change"
-              className="h-14 w-14 object-contain"
-              width={100}
-              height={100}
+              className="h-25 w-25 object-contain"
+              width={200}
+              height={200}
             />
             <div className="hidden sm:block">
               <h1 className="text-xl font-bold text-foreground font-avenir-regular">

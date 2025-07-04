@@ -220,11 +220,11 @@ const Index = () => {
                 <Card className="group hover:shadow-lg transition-all duration-300 border-border hover:border-primary/30 h-full">
                   <CardContent className="p-8 text-center space-y-4">
                     <motion.div
-                      className={`inline-flex p-4 rounded-full bg-linear-to-br from-secondary to-muted ${service.color}`}
+                      className={`inline-flex p-4 rounded-full bg-linear-to-br from-primary to-secondary ${service.color}`}
                       whileHover={{ scale: 1.1, rotate: 5 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <service.icon className="h-8 w-8" />
+                      <service.icon className="h-8 w-8 text-white" />
                     </motion.div>
                     <h3 className="text-xl font-semibold text-foreground">
                       {service.title}
