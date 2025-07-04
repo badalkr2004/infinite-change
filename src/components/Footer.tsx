@@ -18,9 +18,9 @@ const Footer = () => {
               <Image
                 src="/logo-new.png"
                 alt="Infinite Change"
-                className="h-10 w-10 object-contain"
-                width={100}
-                height={100}
+                className="h-25 w-25 object-contain"
+                width={500}
+                height={500}
               />
               <div>
                 <h3 className="text-lg font-bold">INFINITE CHANGE</h3>
