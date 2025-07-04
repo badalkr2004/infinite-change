@@ -17,132 +17,96 @@ const Preloader = () => {
 
   return (
     <motion.div
-      className="fixed inset-0 z-9999 flex items-center justify-center bg-background"
+      className="fixed inset-0 z-9999 flex items-center justify-center"
+      style={{ backgroundColor: '#172636' }}
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="relative">
-        {/* Outer rotating gradient circle */}
-        <motion.div
-          className="w-32 h-32 rounded-full bg-linear-to-r from-primary via-accent to-primary opacity-20"
-          animate={{
-            rotate: 360,
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            rotate: {
-              duration: 2,
-              repeat: Infinity,
-              ease: "linear",
-            },
-            scale: {
-              duration: 1.5,
-              repeat: Infinity,
-              ease: "easeInOut",
-            },
-          }}
-        />
-
-        {/* Middle rotating gradient circle */}
-        <motion.div
-          className="absolute inset-4 rounded-full bg-linear-to-l from-accent via-primary to-accent opacity-40"
-          animate={{
-            rotate: -360,
-            scale: [1.1, 0.9, 1.1],
-          }}
-          transition={{
-            rotate: {
-              duration: 1.5,
-              repeat: Infinity,
-              ease: "linear",
-            },
-            scale: {
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-            },
-          }}
-        />
-
-        {/* Inner rotating gradient circle */}
-        <motion.div
-          className="absolute inset-8 rounded-full bg-linear-to-br from-primary to-accent opacity-60"
-          animate={{
-            rotate: 360,
-            scale: [0.8, 1.3, 0.8],
-          }}
-          transition={{
-            rotate: {
-              duration: 1,
-              repeat: Infinity,
-              ease: "linear",
-            },
-            scale: {
-              duration: 1.8,
-              repeat: Infinity,
-              ease: "easeInOut",
-            },
-          }}
-        />
-
-        {/* Center logo */}
-        <div className="absolute inset-0 flex items-center justify-center">
+      <div className="relative flex flex-col items-center justify-center">
+        {/* Center logo with subtle glowing effect */}
+        <div className="flex items-center justify-center relative">
+          {/* Subtle Glowing effect */}
           <motion.div
-            className="w-12 h-12 rounded-full bg-linear-to-br from-primary to-accent flex items-center justify-center"
+            className="absolute w-48 h-48 rounded-full"
+            style={{
+              background: 'radial-gradient(circle, #4fa3c7 0%, #e89b6c 40%, transparent 100%)',
+              filter: 'blur(16px)',
+              zIndex: 0,
+              opacity: 0.3,
+            }}
             animate={{
-              scale: [1, 1.1, 1],
-              boxShadow: [
-                "0 0 20px hsl(var(--primary) / 0.3)",
-                "0 0 30px hsl(var(--primary) / 0.6)",
-                "0 0 20px hsl(var(--primary) / 0.3)",
-              ],
+              scale: [1, 1.05, 1],
+              opacity: [0.2, 0.3, 0.2],
             }}
             transition={{
-              duration: 1.5,
+              duration: 2,
               repeat: Infinity,
-              ease: "easeInOut",
+              ease: 'easeInOut',
             }}
-          >
-            <span className="text-primary-foreground font-bold text-lg">
-              IC
-            </span>
-          </motion.div>
+          />
+          <img
+            src="/logo-new copy.png"
+            alt="Infinite Change Logo"
+            className="w-44 h-44 object-contain relative z-10"
+            style={{ borderRadius: '50%' }}
+          />
         </div>
-
-        {/* Outer glow effect */}
-        <motion.div
-          className="absolute inset-0 rounded-full bg-linear-to-r from-primary to-accent opacity-10 blur-xl"
+        {/* Animated falling leaf (spring effect) */}
+        <motion.img
+          src="/leaf.png.png"
+          alt="Falling Leaf"
+          className="absolute left-1/2"
+          style={{ top: 0, width: '48px', height: '48px', zIndex: 20, marginLeft: '-24px' }}
+          initial={{ y: -60, x: 0, rotate: -20, opacity: 0 }}
           animate={{
-            scale: [1, 1.5, 1],
-            opacity: [0.1, 0.3, 0.1],
+            y: [0, 200, 400, 600],
+            x: [0, -30, 30, 0],
+            rotate: [-20, 10, -10, 0],
+            opacity: [0, 1, 1, 0],
           }}
           transition={{
-            duration: 2,
+            duration: 3,
             repeat: Infinity,
-            ease: "easeInOut",
+            ease: 'easeInOut',
           }}
         />
-      </div>
-
-      {/* Loading text */}
-      <motion.div
-        className="absolute bottom-20 text-center"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5, duration: 0.5 }}
-      >
-        <h2 className="text-xl font-bold bg-linear-to-r from-primary to-accent bg-clip-text text-transparent">
-          INFINITE CHANGE
-        </h2>
+        {/* Animated bar loader below logo */}
+        <div className="absolute left-1/2" style={{ top: 'calc(100% + 24px)', width: '160px', marginLeft: '-80px', zIndex: 10 }}>
+          <div className="w-full h-3 bg-[#22344a] rounded-full overflow-hidden relative">
+            <motion.div
+              className="h-full rounded-full"
+              style={{ background: 'linear-gradient(90deg, #4fa3c7 0%, #e89b6c 100%)' }}
+              initial={{ x: '-100%' }}
+              animate={{ x: ['-100%', '100%'] }}
+              transition={{
+                repeat: Infinity,
+                duration: 1.2,
+                ease: 'linear',
+              }}
+            />
+          </div>
+        </div>
+        {/* Loading text */}
         <motion.div
-          className="text-sm text-muted-foreground mt-2"
-          animate={{ opacity: [0.5, 1, 0.5] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
+          className="mt-8 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.5 }}
         >
-          Coaching • Training • Development
+          <h2 className="text-xl font-bold" style={{ color: '#4fa3c7' }}>
+            INFINITE <span style={{ color: '#e89b6c' }}>CHANGE</span>
+          </h2>
+          <motion.div
+            className="text-sm mt-2"
+            style={{ color: '#b0b8c1' }}
+            animate={{ opacity: [0.5, 1, 0.5] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+          >
+            Coaching • Training • Development
+          </motion.div>
         </motion.div>
-      </motion.div>
+      </div>
     </motion.div>
   );
 };
