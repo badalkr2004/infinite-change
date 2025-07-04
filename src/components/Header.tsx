@@ -36,7 +36,7 @@ const Header = () => {
               <Image
                 src="/logo-new.png"
                 alt="Infinite Change"
-                className="h-36 w-36 object-contain"
+                className="h-36 w-36 object-contain p-2"
                 width={144}
                 height={144}
                 style={{
@@ -85,9 +85,9 @@ const Header = () => {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? (
-              <X className="h-6 w-6" />
+              <X className="h-6 w-6" style={{ color: '#FFFFCC' }} />
             ) : (
-              <Menu className="h-6 w-6" />
+              <Menu className="h-6 w-6" style={{ color: '#FFFFCC' }} />
             )}
           </button>
         </div>

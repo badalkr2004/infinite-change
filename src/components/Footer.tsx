@@ -137,7 +137,7 @@ const Footer = () => {
               </Link>
             </div>
             <div className="text-sm opacity-80">
-              © 2024 Infinite Change. All rights reserved.
+              © 2025 Infinite Change. All rights reserved.
             </div>
           </div>
         </div>

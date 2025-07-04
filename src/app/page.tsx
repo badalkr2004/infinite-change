@@ -64,14 +64,14 @@ const Index = () => {
       {/* Hero Section */}
       <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 bg-linear-to-br from-secondary via-background to-muted">
         <div className="container mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-center text-center lg:text-left">
             <motion.div
               className="space-y-8"
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              <div className="space-y-4">
+              <div className="space-y-4 text-center lg:text-left">
                 <motion.div
                   className="mb-6"
                   initial={{ opacity: 0, y: 30 }}
@@ -87,7 +87,7 @@ const Index = () => {
                   />
                 </motion.div>
                 <motion.p
-                  className="text-xl text-muted-foreground max-w-lg"
+                  className="text-xl text-muted-foreground max-w-lg mx-auto lg:mx-0"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.4 }}
