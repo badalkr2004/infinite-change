@@ -7,10 +7,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { useToast } from "@/hooks/use-toast";
+// import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
-  const { toast } = useToast();
+  // const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -24,11 +24,11 @@ const Contact = () => {
     // Here you would typically send the form data to your backend
     console.log("Form submitted:", formData);
 
-    toast({
-      title: "Message Sent!",
-      description:
-        "Thank you for reaching out. We'll get back to you within 24 hours.",
-    });
+    // toast({
+    //   title: "Message Sent!",
+    //   description:
+    //     "Thank you for reaching out. We'll get back to you within 24 hours.",
+    // });
 
     // Reset form
     setFormData({

@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const Preloader = () => {
@@ -18,7 +19,7 @@ const Preloader = () => {
   return (
     <motion.div
       className="fixed inset-0 z-9999 flex items-center justify-center"
-      style={{ backgroundColor: '#172636' }}
+      style={{ backgroundColor: "#172636" }}
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
@@ -30,8 +31,9 @@ const Preloader = () => {
           <motion.div
             className="absolute w-48 h-48 rounded-full"
             style={{
-              background: 'radial-gradient(circle, #4fa3c7 0%, #e89b6c 40%, transparent 100%)',
-              filter: 'blur(16px)',
+              background:
+                "radial-gradient(circle, #4fa3c7 0%, #e89b6c 40%, transparent 100%)",
+              filter: "blur(16px)",
               zIndex: 0,
               opacity: 0.3,
             }}
@@ -42,14 +44,16 @@ const Preloader = () => {
             transition={{
               duration: 2,
               repeat: Infinity,
-              ease: 'easeInOut',
+              ease: "easeInOut",
             }}
           />
-          <img
+          <Image
             src="/logo-new copy.png"
             alt="Infinite Change Logo"
             className="w-44 h-44 object-contain relative z-10"
-            style={{ borderRadius: '50%' }}
+            style={{ borderRadius: "50%" }}
+            width={"176"}
+            height={"176"}
           />
         </div>
         {/* Animated falling leaf (spring effect) */}
@@ -57,7 +61,13 @@ const Preloader = () => {
           src="/leaf.png.png"
           alt="Falling Leaf"
           className="absolute left-1/2"
-          style={{ top: 0, width: '48px', height: '48px', zIndex: 20, marginLeft: '-24px' }}
+          style={{
+            top: 0,
+            width: "48px",
+            height: "48px",
+            zIndex: 20,
+            marginLeft: "-24px",
+          }}
           initial={{ y: -60, x: 0, rotate: -20, opacity: 0 }}
           animate={{
             y: [0, 200, 400, 600],
@@ -68,21 +78,31 @@ const Preloader = () => {
           transition={{
             duration: 3,
             repeat: Infinity,
-            ease: 'easeInOut',
+            ease: "easeInOut",
           }}
         />
         {/* Animated bar loader below logo */}
-        <div className="absolute left-1/2" style={{ top: 'calc(100% + 24px)', width: '160px', marginLeft: '-80px', zIndex: 10 }}>
+        <div
+          className="absolute left-1/2"
+          style={{
+            top: "calc(100% + 24px)",
+            width: "160px",
+            marginLeft: "-80px",
+            zIndex: 10,
+          }}
+        >
           <div className="w-full h-3 bg-[#22344a] rounded-full overflow-hidden relative">
             <motion.div
               className="h-full rounded-full"
-              style={{ background: 'linear-gradient(90deg, #4fa3c7 0%, #e89b6c 100%)' }}
-              initial={{ x: '-100%' }}
-              animate={{ x: ['-100%', '100%'] }}
+              style={{
+                background: "linear-gradient(90deg, #4fa3c7 0%, #e89b6c 100%)",
+              }}
+              initial={{ x: "-100%" }}
+              animate={{ x: ["-100%", "100%"] }}
               transition={{
                 repeat: Infinity,
                 duration: 1.2,
-                ease: 'linear',
+                ease: "linear",
               }}
             />
           </div>
@@ -94,12 +114,12 @@ const Preloader = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.5 }}
         >
-          <h2 className="text-xl font-bold" style={{ color: '#4fa3c7' }}>
-            INFINITE <span style={{ color: '#e89b6c' }}>CHANGE</span>
+          <h2 className="text-xl font-bold" style={{ color: "#4fa3c7" }}>
+            INFINITE <span style={{ color: "#e89b6c" }}>CHANGE</span>
           </h2>
           <motion.div
             className="text-sm mt-2"
-            style={{ color: '#b0b8c1' }}
+            style={{ color: "#b0b8c1" }}
             animate={{ opacity: [0.5, 1, 0.5] }}
             transition={{ duration: 1.5, repeat: Infinity }}
           >

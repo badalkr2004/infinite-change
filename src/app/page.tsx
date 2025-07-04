@@ -147,8 +147,8 @@ const Index = () => {
                   <Image
                     src={"/logo-new.png"}
                     alt="logo-infinite-change"
-                    width={100}
-                    height={100}
+                    width={"800"}
+                    height={"800"}
                   ></Image>
                 </motion.div>
                 <div className="absolute inset-0 bg-linear-to-br from-primary/20 to-accent/20 rounded-full blur-3xl -z-10"></div>
