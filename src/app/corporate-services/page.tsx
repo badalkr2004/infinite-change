@@ -1,9 +1,11 @@
+"use client";
 import { Users, Building, Brain, Shield, Target } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { motion } from "framer-motion";
 
 const CorporateServices = () => {
   const services = [
@@ -133,10 +135,10 @@ const CorporateServices = () => {
       <Header />
 
       {/* Hero Section */}
-      <section className="pt-35 pb-16 px-4 sm:px-6 lg:px-8 bg-linear-to-br from-secondary via-background to-muted">
+      <section className="pt-35 pb-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-[#ffffff] to-[#ffffff]">
         <div className="container mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            <span className="bg-linear-to-r from-primary to-accent bg-clip-text text-transparent">
+            <span className="bg-[#2C3746] to-accent bg-clip-text text-transparent">
               Corporate Services
             </span>
           </h1>
@@ -147,10 +149,11 @@ const CorporateServices = () => {
           </p>
           <Button
             asChild
-            size="lg"
-            className="bg-linear-to-r from-primary to-accent"
+            size="sm"
+            className="bg-[#2C3746] hover:bg-[#DC842E] text-white px-8 py-3 transition-all duration-300"
+            style={{ textDecoration: 'none', }}
           >
-            <Link href="/contact">Schedule Corporate Consultation</Link>
+            <Link href="/contact">Schedule Consultation</Link>
           </Button>
         </div>
       </section>
@@ -164,7 +167,7 @@ const CorporateServices = () => {
                 {category}
               </h2>
               <div
-                className={`w-24 h-1 bg-linear-to-r ${
+                className={`w-24 h-1 bg-[#2C3746] ${
                   categoryColors[category as keyof typeof categoryColors]
                 } mx-auto rounded-full`}
               ></div>
@@ -174,11 +177,11 @@ const CorporateServices = () => {
               {categoryServices.map((service, index) => (
                 <Card
                   key={index}
-                  className="border-border hover:shadow-lg transition-all duration-300 group"
+                  className="border-border hover:shadow-lg transition-all duration-300 group hover:border-[#DC842E] hover:bg-[#DC842E]/10"
                 >
                   <CardHeader className="pb-4">
                     <div
-                      className={`w-12 h-12 bg-linear-to-r ${
+                      className={`w-12 h-12 bg-[#2C3746] ${
                         categoryColors[category as keyof typeof categoryColors]
                       } rounded-lg flex items-center justify-center mb-4`}
                     >
@@ -210,7 +213,7 @@ const CorporateServices = () => {
                     </div>
                     <Button
                       variant="ghost"
-                      className="w-full text-primary hover:bg-primary hover:text-primary-foreground group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+                      className="w-full text-primary hover:bg-[#DC842E] hover:text-white group-hover:bg-[#DC842E] group-hover:text-white transition-colors"
                     >
                       Learn More
                     </Button>
@@ -261,7 +264,7 @@ const CorporateServices = () => {
               },
             ].map((phase, index) => (
               <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-linear-to-r from-primary to-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-[#2C3746] from-primary to-accent rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-white font-bold text-lg">
                     {phase.step}
                   </span>
@@ -277,36 +280,49 @@ const CorporateServices = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-linear-to-r from-primary to-accent">
-        <div className="container mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
-            Ready to Transform Your Organization?
-          </h2>
-          <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
-            Let&apos;s discuss how our corporate services can help you achieve
-            your organizational goals.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              asChild
-              size="lg"
-              variant="secondary"
-              className="text-lg px-8 bg-background text-foreground hover:bg-background/90"
-            >
-              <Link href="/contact">Get Started</Link>
+      <section className="py-20 px-4 sm:px-6 lg:px-8" style={{ background: '#273548' , color: '#FFFFCC' }}>
+        <motion.div
+          className="container mx-auto text-center"
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true, margin: "-50px" }}
+        >
+          <motion.h2
+            className="text-3xl md:text-4xl font-bold text-primary-foreground mb-4"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            Ready to Begin Your Transformation?
+          </motion.h2>
+          <motion.p
+            className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            viewport={{ once: true }}
+          >
+            Join hundreds of individuals and organizations who have unlocked
+            their potential with Infinite Change.
+          </motion.p>
+          <motion.div
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <Button asChild size="lg">
+              <Link href="/contact">Get Started Today</Link>
             </Button>
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="text-lg px-8 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
-            >
-              <Link href="/services">View All Services</Link>
+            <Button asChild size="lg">
+              <Link href="/about">Learn More About Us</Link>
             </Button>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </section>
-
       <Footer />
     </div>
   );

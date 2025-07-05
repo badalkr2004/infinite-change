@@ -28,7 +28,7 @@ const Index = () => {
       icon: Lightbulb,
       title: "Mindfulness Training",
       description:
-        "Develop mindful leadership skills and create more conscious, productive workplace environments.",
+        "Develop mindful leadership skills and create more conscious,impactful, productive workplace environments.",
       color: "text-warning",
     },
   ];
@@ -61,102 +61,37 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Header />
 
-      {/* Hero Section */}
-      <section className="pt-32 md:pt-40 pb-16 px-4 sm:px-6 lg:px-8 bg-linear-to-br from-secondary via-background to-muted">
-        <div className="container mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center text-center lg:text-left">
-            <motion.div
-              className="space-y-8"
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-            >
-              <div className="space-y-4 text-center lg:text-left">
-                <motion.div
-                  className="mb-6 mt-8 lg:mt-0"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                >
-                  <Image
-                    src="/tagline.png"
-                    alt="I Change to Elevate"
-                    className="object-contain ml-4 lg:ml-0 w-[250px] md:w-[400px] h-auto"
-                    width={400}
-                    height={120}
-                  />
-                </motion.div>
-                <motion.p
-                  className="text-xl text-muted-foreground max-w-lg mx-auto lg:mx-0"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
-                >
-                  Empowering individuals and organizations through
-                  transformative coaching, comprehensive training, and strategic
-                  development programs.
-                </motion.p>
-              </div>
-
-              <motion.div
-                className="flex flex-col sm:flex-row gap-4"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-              >
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="text-lg px-8 font-avenir-regular"
-                >
-                  <Link href="/services">
-                    Explore Services <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
-                </Button>
-                <Button
-                  asChild
-                  variant="outline"
-                  size="lg"
-                  className="text-lg px-8 font-avenir-regular"
-                >
-                  <Link href="/contact">Schedule Consultation</Link>
-                </Button>
-              </motion.div>
-            </motion.div>
-
-            <motion.div
-              className="flex justify-center"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-            >
-              <div className="relative">
-                <motion.div
-                  className="w-80 h-80 object-contain drop-shadow-lg"
-                  animate={{
-                    rotate: [0, 5, 0, -5, 0],
-                    scale: [1, 1.05, 1],
-                  }}
-                  transition={{
-                    duration: 6,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                >
-                  <Image
-                    src={"/logo-new.png"}
-                    alt="logo-infinite-change"
-                    width={"800"}
-                    height={"800"}
-                  ></Image>
-                </motion.div>
-                <div className="absolute inset-0 bg-linear-to-br from-primary/20 to-accent/20 rounded-full blur-3xl -z-10"></div>
-              </div>
-            </motion.div>
-          </div>
+      {/* Hero Header: Only on Home Page */}
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        className="flex flex-col items-center px-4 bg-white"
+      >
+        <Image
+          src="/logo-new.png"
+          alt="Infinite Change"
+          className="object-contain"
+          width={400}
+          height={400}
+          priority
+        />
+        <div className="">
+          <Image
+            src="/tagline.png"
+            alt="Tagline"
+            width={400}
+            height={70}
+            className="object-contain"
+            priority
+          />
         </div>
-      </section>
+        <div className="mb-4 text-center max-w-2xl">
+          <p className="text-base md:text-lg text-[#273548] font-avenir-regular">
+            Empowering individuals and organisations through transformative coaching, comprehensive training and strategic development programs.
+          </p>
+        </div>
+      </motion.div>
 
       {/* Stats Section */}
       <section className="py-16 bg-foreground text-background">

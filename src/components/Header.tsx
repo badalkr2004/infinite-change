@@ -5,121 +5,125 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
+const navItems = [
+  { name: "Home", href: "/" },
+  { name: "About Us", href: "/about" },
+  { name: "Corporate Services", href: "/corporate-services" },
+  { name: "Services", href: "/services" },
+  { name: "Contact", href: "/contact" },
+];
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const navItems = [
-    { name: "Home", href: "/" },
-    { name: "About Us", href: "/about" },
-    { name: "Corporate Services", href: "/corporate-services" },
-    { name: "Services", href: "/services" },
-    { name: "Contact", href: "/contact" },
-  ];
-
   return (
-    <header className="py-5 fixed top-0 left-0 right-0 z-50 border-b border-border" style={{ background: '#273548' }}>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3">
-            <span style={{
-              // display: 'inline-flex',
-              // alignItems: 'center',
-              // justifyContent: 'center',
-              // width: '150px',
-              // height: '150px',
-              // borderRadius: '50%',
-              // background: '#273548',
-              // boxShadow: '0 0 32px 8px #FFFFCC',
-              // position: 'relative',
-            }}>
-              <Image
-                src="/logo-new.png"
-                alt="Infinite Change"
-                className="h-36 w-36 object-contain p-2"
-                width={144}
-                height={144}
-                style={{
-                  filter: 'drop-shadow(0 0 12px #FFFFCC)'
-                }}
-              />
-            </span>
+    <>
+      {/* Navigation Bar - fixed at top */}
+      <nav className="w-full fixed top-0 left-0 right-0 z-50 border-b border-gray-200 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
+          {/* Logo and Company Name/Tagline on the left */}
+          <Link href="/" className="flex items-center space-x-3 min-w-[220px]">
+            <Image
+              src="/logo-new.png"
+              alt="Infinite Change"
+              width={100}
+              height={100}
+              className="object-contain"
+              priority
+            />
             <div className="hidden sm:block">
-              <h1 className="text-xl font-bold font-avenir-regular" style={{ color: '#FFFFCC' }}>
+              <h1 className="text-lg font-bold font-avenir-regular text-[#273548] leading-tight">
                 INFINITE CHANGE
               </h1>
-              <p className="text-xs uppercase tracking-wider font-avenir-light" style={{ color: '#FFFFCC' }}>
-                COACHING 2 TRAINING 2 DEVELOPMENT
+              <p className="text-xs uppercase tracking-wider font-avenir-light text-[#273548]">
+                COACHING • TRAINING • DEVELOPMENT
               </p>
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          {/* Desktop Navigation - centered */}
+          <div className="hidden md:flex flex-1 items-center justify-center space-x-8">
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="transition-colors font-medium"
-                style={{ color: '#FFFFCC', textDecoration: 'none', fontWeight: 'bold' }}
-                onMouseOver={e => e.currentTarget.style.color = '#DC842E'}
-                onMouseOut={e => e.currentTarget.style.color = '#FFFFCC'}
-                onFocus={e => e.currentTarget.style.color = '#DC842E'}
-                onBlur={e => e.currentTarget.style.color = '#FFFFCC'}
+                className="transition-colors font-medium text-[#273548] hover:text-[#DC842E] focus:text-[#DC842E] font-avenir-regular"
+                style={{ textDecoration: 'none', fontWeight: 'bold' }}
               >
                 {item.name}
               </Link>
             ))}
-          </nav>
+          </div>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
-            <Button asChild variant="accent" className="font-avenir-regular">
+          {/* Get Started Button - right */}
+          <div className="hidden md:flex min-w-[200px] justify-end mr-4 ">
+            <Button asChild variant="accent" className="font-avenir-regular w-full">
               <Link href="/contact">Get Started</Link>
             </Button>
           </div>
 
           {/* Mobile menu button */}
           <button
-            className="md:hidden"
+            className="md:hidden ml-auto"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
           >
             {isMenuOpen ? (
-              <X className="h-6 w-6" style={{ color: '#FFFFCC' }} />
+              <X className="h-6 w-6 text-[#273548]" />
             ) : (
-              <Menu className="h-6 w-6" style={{ color: '#FFFFCC' }} />
+              <Menu className="h-6 w-6 text-[#273548]" />
             )}
           </button>
         </div>
-
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 bg-background border-t border-border">
+          <div className="md:hidden bg-white border-t border-b border-gray-200">
+            <div className="flex flex-col items-center py-4">
+              <Image
+                src="/logo-new.png"
+                alt="Infinite Change"
+                width={40}
+                height={40}
+                className="object-contain mb-2"
+                priority
+              />
+              <div className="text-center">
+                <h1 className="text-base font-bold font-avenir-regular text-[#273548] leading-tight">
+                  INFINITE CHANGE
+                </h1>
+                <p className="text-xs uppercase tracking-wider font-avenir-light text-[#273548]">
+                  COACHING • TRAINING • DEVELOPMENT
+                </p>
+              </div>
+            </div>
+            <div className="px-2 pt-2 pb-3 space-y-1 flex flex-col items-center">
               {navItems.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="block px-3 py-2 text-foreground hover:text-primary transition-colors"
+                  className="block px-3 py-2 text-[#273548] hover:text-[#DC842E] font-avenir-regular text-base font-medium text-center no-underline"
+                  style={{ textDecoration: 'none' }}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
                 </Link>
               ))}
-              <div className="px-3 py-2">
-                <Button
-                  asChild
-                  variant="accent"
-                  className="w-full font-avenir-regular"
-                >
-                  <Link href="/contact">Get Started</Link>
-                </Button>
-              </div>
+              <Button
+                asChild
+                variant="accent"
+                className="w-full font-avenir-regular"
+                style={{ textDecoration: 'none' }}
+              >
+                <Link href="/contact">Get Started</Link>
+              </Button>
             </div>
           </div>
         )}
-      </div>
-    </header>
+      </nav>
+
+      {/* Spacer for fixed nav */}
+      <div className="h-20" />
+    </>
   );
 };
 

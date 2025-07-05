@@ -34,7 +34,7 @@ const About = () => {
       <Header />
 
       {/* Hero Section */}
-      <section className="pt-35 pb-16 px-4 sm:px-6 lg:px-8 bg-linear-to-br from-secondary via-background to-muted">
+      <section className="pt-35 pb-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-[#ffffff] to-[#ffffff]">
         <motion.div
           className="container mx-auto text-center"
           initial={{ opacity: 0, y: 30 }}
@@ -48,7 +48,7 @@ const About = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             About{" "}
-            <span className="bg-linear-to-r from-primary to-accent bg-clip-text text-transparent">
+            <span className="bg-[#2C3746] from-primary to-accent bg-clip-text text-transparent">
               Infinite Change
             </span>
           </motion.h1>
@@ -85,7 +85,7 @@ const About = () => {
                     transition={{ duration: 0.5, delay: 0.2 }}
                     viewport={{ once: true }}
                   >
-                    <div className="bg-linear-to-br from-primary to-accent p-3 rounded-full">
+                    <div className="bg-[#2C3746] from-primary to-accent p-3 rounded-full">
                       <Target className="h-6 w-6 text-primary-foreground" />
                     </div>
                     <h2 className="text-2xl font-bold text-foreground">
@@ -151,7 +151,7 @@ const About = () => {
                     transition={{ duration: 0.5, delay: 0.2 }}
                     viewport={{ once: true }}
                   >
-                    <div className="bg-linear-to-br from-accent to-warning p-3 rounded-full">
+                    <div className="bg-[#2C3746] from-accent to-warning p-3 rounded-full">
                       <Eye className="h-6 w-6 text-accent-foreground" />
                     </div>
                     <h2 className="text-2xl font-bold text-foreground">
@@ -234,7 +234,7 @@ const About = () => {
                 <Card className="bg-background border-border hover:shadow-lg transition-shadow duration-300 h-full">
                   <CardContent className="p-6 text-center space-y-4">
                     <motion.div
-                      className="w-16 h-16 bg-linear-to-br from-primary to-accent rounded-full mx-auto flex items-center justify-center"
+                      className="w-16 h-16 bg-[#2C3746] from-primary to-accent rounded-full mx-auto flex items-center justify-center"
                       whileHover={{ scale: 1.1, rotate: 10 }}
                       transition={{ duration: 0.2 }}
                     >
