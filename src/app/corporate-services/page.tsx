@@ -133,7 +133,7 @@ const CorporateServices = () => {
       <Header />
 
       {/* Hero Section */}
-      <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 bg-linear-to-br from-secondary via-background to-muted">
+      <section className="pt-35 pb-16 px-4 sm:px-6 lg:px-8 bg-linear-to-br from-secondary via-background to-muted">
         <div className="container mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
             <span className="bg-linear-to-r from-primary to-accent bg-clip-text text-transparent">
