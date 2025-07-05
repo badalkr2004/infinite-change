@@ -62,7 +62,7 @@ const Index = () => {
       <Header />
 
       {/* Hero Section */}
-      <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 bg-linear-to-br from-secondary via-background to-muted">
+      <section className="pt-32 md:pt-40 pb-16 px-4 sm:px-6 lg:px-8 bg-linear-to-br from-secondary via-background to-muted">
         <div className="container mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center text-center lg:text-left">
             <motion.div
@@ -73,7 +73,7 @@ const Index = () => {
             >
               <div className="space-y-4 text-center lg:text-left">
                 <motion.div
-                  className="mb-6"
+                  className="mb-6 mt-8 lg:mt-0"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
@@ -81,9 +81,9 @@ const Index = () => {
                   <Image
                     src="/tagline.png"
                     alt="I Change to Elevate"
-                    className="w-full max-w-2xl object-contain"
+                    className="object-contain ml-4 lg:ml-0 w-[250px] md:w-[400px] h-auto"
                     width={400}
-                    height={400}
+                    height={120}
                   />
                 </motion.div>
                 <motion.p
