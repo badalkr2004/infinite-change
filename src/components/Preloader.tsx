@@ -57,7 +57,7 @@ const Preloader = () => {
           />
         </div>
         {/* Animated falling leaf (spring effect) */}
-        <motion.img
+        {/* <motion.img
           src="/leaf.png.png"
           alt="Falling Leaf"
           className="absolute left-1/2"
@@ -80,7 +80,7 @@ const Preloader = () => {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-        />
+        /> */}
         {/* Animated bar loader below logo */}
         <div
           className="absolute left-1/2"

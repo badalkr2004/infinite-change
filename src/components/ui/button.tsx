@@ -44,11 +44,11 @@ export interface ButtonProps
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
+  ({ className, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : "button";
     return (
       <span
-        className="inline-block p-[10px] bg-white rounded-[10px] transition-all duration-300 border-[5px] border-[#273548] w-full max-w-[350px] sm:max-w-none"
+        className="inline-block p-[10px] bg-white rounded-[0px] transition-all duration-300 border-[5px] border-[#273548] w-full max-w-[350px] sm:max-w-none"
         style={{ borderRadius: "10px" }}
       >
         <Comp

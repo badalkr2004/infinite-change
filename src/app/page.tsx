@@ -65,8 +65,8 @@ const Index = () => {
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="flex flex-col items-center px-4 bg-white"
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="flex -mt-1 flex-col items-center px-4 bg-white"
       >
         <Image
           src="/logo-new.png"
@@ -76,7 +76,7 @@ const Index = () => {
           height={400}
           priority
         />
-        <div className="">
+        <div className="-mt-9">
           <Image
             src="/tagline.png"
             alt="Tagline"
@@ -88,7 +88,8 @@ const Index = () => {
         </div>
         <div className="mb-4 text-center max-w-2xl">
           <p className="text-base md:text-lg text-[#273548] font-avenir-regular">
-            Empowering individuals and organisations through transformative coaching, comprehensive training and strategic development programs.
+            Empowering individuals and organisations through transformative
+            coaching, comprehensive training and strategic development programs.
           </p>
         </div>
       </motion.div>
@@ -241,7 +242,10 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8" style={{ background: '#273548' , color: '#FFFFCC' }}>
+      <section
+        className="py-20 px-4 sm:px-6 lg:px-8"
+        style={{ background: "#273548", color: "#FFFFCC" }}
+      >
         <motion.div
           className="container mx-auto text-center"
           initial={{ opacity: 0, scale: 0.9 }}
