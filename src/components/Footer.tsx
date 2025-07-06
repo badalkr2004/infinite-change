@@ -42,7 +42,8 @@ const Footer = () => {
               <li>
                 <Link
                   href="/about"
-                  className="text-sm opacity-80 hover:opacity-100 transition-opacity"
+                  className="text-sm text-[#FFFFCC] hover:text-[#DC842E] transition-colors no-underline"
+                  style={{ textDecoration: 'none' }}
                 >
                   About Us
                 </Link>
@@ -50,7 +51,8 @@ const Footer = () => {
               <li>
                 <Link
                   href="/corporate-services"
-                  className="text-sm opacity-80 hover:opacity-100 transition-opacity"
+                  className="text-sm text-[#FFFFCC] hover:text-[#DC842E] transition-colors no-underline"
+                  style={{ textDecoration: 'none' }}
                 >
                   Corporate Services
                 </Link>
@@ -58,7 +60,8 @@ const Footer = () => {
               <li>
                 <Link
                   href="/services"
-                  className="text-sm opacity-80 hover:opacity-100 transition-opacity"
+                  className="text-sm text-[#FFFFCC] hover:text-[#DC842E] transition-colors no-underline"
+                  style={{ textDecoration: 'none' }}
                 >
                   Services
                 </Link>
@@ -66,7 +69,8 @@ const Footer = () => {
               <li>
                 <Link
                   href="/contact"
-                  className="text-sm opacity-80 hover:opacity-100 transition-opacity"
+                  className="text-sm text-[#FFFFCC] hover:text-[#DC842E] transition-colors no-underline"
+                  style={{ textDecoration: 'none' }}
                 >
                   Contact Us
                 </Link>
@@ -102,6 +106,11 @@ const Footer = () => {
               Subscribe to get updates on our latest programs and insights.
             </p>
             <div className="space-y-2">
+              <Input
+                type="text"
+                placeholder="Your name"
+                className="bg-background/10 border-background/20 text-background placeholder:text-background/60"
+              />
               <Input
                 type="email"
                 placeholder="Your email"
