@@ -74,11 +74,11 @@ const Contact = () => {
       <Header />
 
       {/* Hero Section */}
-      <section className="pt-35 pb-16 px-4 sm:px-6 lg:px-8 bg-linear-to-br from-secondary via-background to-muted">
+      <section className="pt-35 pb-16 px-4 sm:px-6 lg:px-8 bg-[#ffffff] from-secondary via-background to-muted">
         <div className="container mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
             Get in{" "}
-            <span className="bg-linear-to-r from-primary to-accent bg-clip-text text-transparent">
+            <span className="bg-[#2C3746] from-primary to-accent bg-clip-text text-transparent">
               Touch
             </span>
           </h1>
@@ -185,7 +185,7 @@ const Contact = () => {
 
                   <Button
                     type="submit"
-                    className="w-full bg-linear-to-r from-primary to-accent hover:opacity-90"
+                    className="w-full bg-[#2C3746] from-primary to-accent hover:opacity-90"
                     size="lg"
                   >
                     Send Message <Send className="ml-2 h-4 w-4" />
@@ -215,7 +215,7 @@ const Contact = () => {
                   >
                     <CardContent className="p-6">
                       <div className="flex items-start space-x-4">
-                        <div className="bg-linear-to-r from-primary to-accent p-3 rounded-lg">
+                        <div className="bg-[#2C3746] from-primary to-accent p-3 rounded-lg">
                           <info.icon className="h-6 w-6 text-white" />
                         </div>
                         <div>
@@ -235,7 +235,7 @@ const Contact = () => {
                 ))}
               </div>
 
-              <Card className="bg-linear-to-r from-primary to-accent border-0">
+              <Card className="bg-[#2C3746] from-primary to-accent border-0">
                 <CardContent className="p-6 text-center">
                   <h3 className="text-xl font-bold text-primary-foreground mb-2">
                     Free Consultation
