@@ -135,7 +135,7 @@ const CorporateServices = () => {
       <Header />
 
       {/* Hero Section */}
-      <section className="pt-35 pb-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-[#ffffff] to-[#ffffff]">
+      <section className="pt-10 md:pt-20 lg:pt-35 pb-5 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-[#ffffff] to-[#ffffff]">
         <div className="container mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
             <span className="bg-[#2C3746] to-accent bg-clip-text text-transparent">
@@ -151,7 +151,7 @@ const CorporateServices = () => {
             asChild
             size="sm"
             className="bg-[#2C3746] hover:bg-[#DC842E] text-white px-8 py-3 transition-all duration-300"
-            style={{ textDecoration: 'none', }}
+            style={{ textDecoration: "none" }}
           >
             <Link href="/contact">Schedule Consultation</Link>
           </Button>
@@ -280,7 +280,10 @@ const CorporateServices = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8" style={{ background: '#273548' , color: '#FFFFCC' }}>
+      <section
+        className="py-20 px-4 sm:px-6 lg:px-8"
+        style={{ background: "#273548", color: "#FFFFCC" }}
+      >
         <motion.div
           className="container mx-auto text-center"
           initial={{ opacity: 0, scale: 0.9 }}

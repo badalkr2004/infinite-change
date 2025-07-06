@@ -34,7 +34,7 @@ const About = () => {
       <Header />
 
       {/* Hero Section */}
-      <section className="pt-35 pb-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-[#ffffff] to-[#ffffff]">
+      <section className="pt-10 md:pt-20 lg:pt-35 pb-5 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-[#ffffff] to-[#ffffff]">
         <motion.div
           className="container mx-auto text-center"
           initial={{ opacity: 0, y: 30 }}
