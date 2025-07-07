@@ -61,8 +61,8 @@ const NewsLetter = () => {
             Thank You!
           </h3>
           <p className="text-muted-foreground">
-            You've successfully subscribed to our newsletter. We'll keep you
-            updated with our latest content and insights.
+            You&apos;ve successfully subscribed to our newsletter. We&apos;ll
+            keep you updated with our latest content and insights.
           </p>
         </CardContent>
       </Card>
