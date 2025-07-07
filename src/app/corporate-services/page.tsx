@@ -215,7 +215,7 @@ const CorporateServices = () => {
                       variant="ghost"
                       className="w-full text-primary hover:bg-[#DC842E] hover:text-white group-hover:bg-[#DC842E] group-hover:text-white transition-colors"
                     >
-                      Learn More
+                      Book Now
                     </Button>
                   </CardContent>
                 </Card>

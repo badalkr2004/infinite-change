@@ -169,7 +169,7 @@ const Index = () => {
                       {service.description}
                     </p>
                     <Button>
-                      Learn More <ArrowRight className="ml-2 h-4 w-4" />
+                      Book Now <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </CardContent>
                 </Card>
