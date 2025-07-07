@@ -1,15 +1,12 @@
 import Link from "next/link";
 import { Mail, Phone, MapPin } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+
 import Image from "next/image";
+import NewsLetter from "./NewsLetter";
 
 const Footer = () => {
   return (
-    <footer
-      className=""
-      style={{ background: '#73ABB9', color: '#FFFFCC' }}
-    >
+    <footer className="" style={{ background: "#73ABB9", color: "#FFFFCC" }}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
@@ -43,7 +40,7 @@ const Footer = () => {
                 <Link
                   href="/about"
                   className="text-sm text-[#FFFFCC] hover:text-[#DC842E] transition-colors no-underline"
-                  style={{ textDecoration: 'none' }}
+                  style={{ textDecoration: "none" }}
                 >
                   About Us
                 </Link>
@@ -52,7 +49,7 @@ const Footer = () => {
                 <Link
                   href="/corporate-services"
                   className="text-sm text-[#FFFFCC] hover:text-[#DC842E] transition-colors no-underline"
-                  style={{ textDecoration: 'none' }}
+                  style={{ textDecoration: "none" }}
                 >
                   Corporate Services
                 </Link>
@@ -61,7 +58,7 @@ const Footer = () => {
                 <Link
                   href="/services"
                   className="text-sm text-[#FFFFCC] hover:text-[#DC842E] transition-colors no-underline"
-                  style={{ textDecoration: 'none' }}
+                  style={{ textDecoration: "none" }}
                 >
                   Services
                 </Link>
@@ -70,7 +67,7 @@ const Footer = () => {
                 <Link
                   href="/contact"
                   className="text-sm text-[#FFFFCC] hover:text-[#DC842E] transition-colors no-underline"
-                  style={{ textDecoration: 'none' }}
+                  style={{ textDecoration: "none" }}
                 >
                   Contact Us
                 </Link>
@@ -100,27 +97,7 @@ const Footer = () => {
           </div>
 
           {/* Newsletter */}
-          <div className="space-y-4" style={{ background: 'transparent', color: '#FFFFCC' }}>
-            <h4 className="text-lg font-semibold">Newsletter</h4>
-            <p className="text-sm opacity-80">
-              Subscribe to get updates on our latest programs and insights.
-            </p>
-            <div className="space-y-2">
-              <Input
-                type="text"
-                placeholder="Your name"
-                className="bg-background/10 border-background/20 text-background placeholder:text-background/60"
-              />
-              <Input
-                type="email"
-                placeholder="Your email"
-                className="bg-background/10 border-background/20 text-background placeholder:text-background/60"
-              />
-              <Button className="w-full bg-primary hover:bg-primary/90">
-                Subscribe
-              </Button>
-            </div>
-          </div>
+          <NewsLetter />
         </div>
 
         <div className="border-t border-background/20 mt-8 pt-8">

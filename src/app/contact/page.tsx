@@ -1,51 +1,69 @@
 "use client";
 import { useState } from "react";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Mail, Phone, MapPin, Send, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-// import { useToast } from "@/hooks/use-toast";
+import { useForm } from "react-hook-form";
+import { sendContactEmails } from "@/lib/send-mail";
+import { toast } from "sonner";
+
+const contactFormSchema = z.object({
+  name: z.string().min(2, { message: "Please Enter Your Name" }),
+  email: z.string().email({ message: "Please Enter a Valid Email Address" }),
+  phone: z.string().min(10, { message: "Please Enter a Valid Phone Number" }),
+  message: z.string().min(10, {
+    message: "Please make sure your message is at least 10 characters long.",
+  }),
+});
 
 const Contact = () => {
-  // const { toast } = useToast();
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    // Here you would typically send the form data to your backend
-    console.log("Form submitted:", formData);
-
-    // toast({
-    //   title: "Message Sent!",
-    //   description:
-    //     "Thank you for reaching out. We'll get back to you within 24 hours.",
-    // });
-
-    // Reset form
-    setFormData({
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { isSubmitting, errors },
+  } = useForm<z.infer<typeof contactFormSchema>>({
+    resolver: zodResolver(contactFormSchema),
+    defaultValues: {
       name: "",
       email: "",
-      phone: "",
       message: "",
-    });
-  };
+      phone: "",
+    },
+  });
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+  const onSubmit = async (values: z.infer<typeof contactFormSchema>) => {
+    console.log("Form submitted:", values);
+
+    try {
+      const response = await sendContactEmails({
+        name: values.name,
+        email: values.email,
+        phone: values.phone,
+        message: values.message,
+      });
+
+      if (response.success) {
+        toast.success(
+          "Thank you for contacting us! We'll get back to you within 24 hours."
+        );
+        reset(); // Clear the form
+      } else {
+        console.error("Failed to send emails:", response.error);
+        toast.error(
+          "Failed to send message. Please try again or contact us directly."
+        );
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast.error("An error occurred. Please try again later.");
+    }
   };
 
   const contactInfo = [
@@ -70,19 +88,19 @@ const Contact = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen w-full bg-background">
       <Header />
 
       {/* Hero Section */}
-      <section className="pt-35 pb-16 px-4 sm:px-6 lg:px-8 bg-[#ffffff] from-secondary via-background to-muted">
-        <div className="container mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+      <section className="pt-20 pb-12 px-4 sm:px-6 lg:px-8 bg-[#ffffff]">
+        <div className="max-w-4xl mx-auto text-center">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-6">
             Get in{" "}
-            <span className="bg-[#2C3746] from-primary to-accent bg-clip-text text-transparent">
+            <span className="bg-[#2C3746] bg-clip-text text-transparent">
               Touch
             </span>
           </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
             Ready to start your transformation journey? We&apos;d love to hear
             from you. Reach out to discuss how we can help you achieve your
             goals.
@@ -91,180 +109,192 @@ const Contact = () => {
       </section>
 
       {/* Contact Form & Info */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="container mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-            {/* Contact Form */}
-            <Card className="border-border">
-              <CardHeader>
-                <CardTitle className="text-2xl text-foreground">
-                  Send us a Message
-                </CardTitle>
-                <p className="text-muted-foreground">
-                  Fill out the form below and we&apos;ll get back to you within
-                  24 hours.
-                </p>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <label
-                        htmlFor="name"
-                        className="text-sm font-medium text-foreground"
-                      >
-                        Name *
-                      </label>
-                      <Input
-                        id="name"
-                        name="name"
-                        type="text"
-                        required
-                        value={formData.name}
-                        onChange={handleChange}
-                        placeholder="Your full name"
-                        className="border-border focus:border-primary"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label
-                        htmlFor="email"
-                        className="text-sm font-medium text-foreground"
-                      >
-                        Email *
-                      </label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        required
-                        value={formData.email}
-                        onChange={handleChange}
-                        placeholder="your@email.com"
-                        className="border-border focus:border-primary"
-                      />
-                    </div>
-                  </div>
-
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Contact Form */}
+          <Card className="w-full border-border">
+            <CardHeader>
+              <CardTitle className="text-2xl text-foreground">
+                Send us a Message
+              </CardTitle>
+              <p className="text-muted-foreground">
+                Fill out the form below and we&apos;ll get back to you within 24
+                hours.
+              </p>
+            </CardHeader>
+            <CardContent className="p-4 sm:p-6">
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <label
-                      htmlFor="phone"
+                      htmlFor="name"
                       className="text-sm font-medium text-foreground"
                     >
-                      Phone
+                      Name *
                     </label>
                     <Input
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      placeholder="+1 (555) 123-4567"
+                      id="name"
+                      type="text"
+                      placeholder="Your full name"
                       className="border-border focus:border-primary"
+                      {...register("name")}
                     />
+                    {errors.name && (
+                      <p className="text-sm text-red-500">
+                        {errors.name.message}
+                      </p>
+                    )}
                   </div>
 
                   <div className="space-y-2">
                     <label
-                      htmlFor="message"
+                      htmlFor="email"
                       className="text-sm font-medium text-foreground"
                     >
-                      Message *
+                      Email *
                     </label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      required
-                      value={formData.message}
-                      onChange={handleChange}
-                      placeholder="Tell us about your goals and how we can help..."
-                      rows={6}
-                      className="border-border focus:border-primary resize-none"
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="your@email.com"
+                      className="border-border focus:border-primary"
+                      {...register("email")}
                     />
+                    {errors.email && (
+                      <p className="text-sm text-red-500">
+                        {errors.email.message}
+                      </p>
+                    )}
                   </div>
+                </div>
 
+                <div className="space-y-2">
+                  <label
+                    htmlFor="phone"
+                    className="text-sm font-medium text-foreground"
+                  >
+                    Phone
+                  </label>
+                  <Input
+                    id="phone"
+                    type="tel"
+                    placeholder="+1 (555) 123-4567"
+                    className="border-border focus:border-primary"
+                    {...register("phone")}
+                  />
+                  {errors.phone && (
+                    <p className="text-sm text-red-500">
+                      {errors.phone.message}
+                    </p>
+                  )}
+                </div>
+
+                <div className="space-y-2">
+                  <label
+                    htmlFor="message"
+                    className="text-sm font-medium text-foreground"
+                  >
+                    Message *
+                  </label>
+                  <Textarea
+                    id="message"
+                    placeholder="Tell us about your goals and how we can help..."
+                    rows={6}
+                    className="border-border focus:border-primary resize-none"
+                    {...register("message")}
+                  />
+                  {errors.message && (
+                    <p className="text-sm text-red-500">
+                      {errors.message.message}
+                    </p>
+                  )}
+                </div>
+
+                <div className="w-[220px]">
                   <Button
                     type="submit"
-                    className="w-full bg-[#2C3746] from-primary to-accent hover:opacity-90"
+                    className="w-full sm:w-auto bg-[#2C3746] hover:opacity-90"
                     size="lg"
+                    disabled={isSubmitting}
                   >
-                    Send Message <Send className="ml-2 h-4 w-4" />
+                    {isSubmitting ? "Sending..." : "Send Message"}
+                    <Send className="ml-2 h-4 w-4" />
                   </Button>
-                </form>
+                </div>
+              </form>
+            </CardContent>
+          </Card>
+
+          {/* Contact Information */}
+          <div className="space-y-8">
+            <div>
+              <h2 className="text-2xl font-bold text-foreground mb-4">
+                Let&apos;s Connect
+              </h2>
+              <p className="text-muted-foreground leading-relaxed">
+                Whether you&apos;re an individual looking for personal growth or
+                an organization seeking transformation, we&apos;re here to
+                support your journey. Choose the best way to reach us.
+              </p>
+            </div>
+
+            <div className="space-y-6">
+              {contactInfo.map((info, index) => (
+                <Card
+                  key={index}
+                  className="w-full border-border hover:shadow-md transition-shadow"
+                >
+                  <CardContent className="p-4 sm:p-6">
+                    <div className="flex items-start space-x-4">
+                      <div className="bg-[#2C3746] p-3 rounded-lg">
+                        <info.icon className="h-6 w-6 text-white" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-foreground mb-1">
+                          {info.title}
+                        </h3>
+                        <p className="text-lg text-foreground mb-1">
+                          {info.value}
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                          {info.description}
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            <Card className="bg-[#2C3746] border-0">
+              <CardContent className="p-6 text-center">
+                <h3 className="text-xl font-bold text-primary-foreground mb-2">
+                  Free Consultation
+                </h3>
+                <p className="text-primary-foreground/90 mb-4">
+                  Schedule a complimentary 30-minute consultation to discuss
+                  your goals and how we can help you achieve them.
+                </p>
+                <Button
+                  variant="secondary"
+                  className="bg-background text-foreground hover:bg-background/90"
+                >
+                  Book Free Session
+                </Button>
               </CardContent>
             </Card>
-
-            {/* Contact Information */}
-            <div className="space-y-8">
-              <div>
-                <h2 className="text-2xl font-bold text-foreground mb-4">
-                  Let&apos;s Connect
-                </h2>
-                <p className="text-muted-foreground leading-relaxed">
-                  Whether you&apos;re an individual looking for personal growth
-                  or an organization seeking transformation, we&apos;re here to
-                  support your journey. Choose the best way to reach us.
-                </p>
-              </div>
-
-              <div className="space-y-6">
-                {contactInfo.map((info, index) => (
-                  <Card
-                    key={index}
-                    className="border-border hover:shadow-md transition-shadow"
-                  >
-                    <CardContent className="p-6">
-                      <div className="flex items-start space-x-4">
-                        <div className="bg-[#2C3746] from-primary to-accent p-3 rounded-lg">
-                          <info.icon className="h-6 w-6 text-white" />
-                        </div>
-                        <div>
-                          <h3 className="font-semibold text-foreground mb-1">
-                            {info.title}
-                          </h3>
-                          <p className="text-lg text-foreground mb-1">
-                            {info.value}
-                          </p>
-                          <p className="text-sm text-muted-foreground">
-                            {info.description}
-                          </p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-
-              <Card className="bg-[#2C3746] from-primary to-accent border-0">
-                <CardContent className="p-6 text-center">
-                  <h3 className="text-xl font-bold text-primary-foreground mb-2">
-                    Free Consultation
-                  </h3>
-                  <p className="text-primary-foreground/90 mb-4">
-                    Schedule a complimentary 30-minute consultation to discuss
-                    your goals and how we can help you achieve them.
-                  </p>
-                  <Button
-                    variant="secondary"
-                    className="bg-background text-foreground hover:bg-background/90"
-                  >
-                    Book Free Session
-                  </Button>
-                </CardContent>
-              </Card>
-            </div>
           </div>
         </div>
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-secondary">
-        <div className="container mx-auto max-w-4xl">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-secondary">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">
               Frequently Asked Questions
             </h2>
-            <p className="text-xl text-muted-foreground">
+            <p className="text-base sm:text-lg text-muted-foreground">
               Quick answers to common questions
             </p>
           </div>
@@ -293,7 +323,7 @@ const Contact = () => {
               },
             ].map((faq, index) => (
               <Card key={index} className="bg-background border-border">
-                <CardContent className="p-6">
+                <CardContent className="p-4 sm:p-6">
                   <h3 className="font-semibold text-foreground mb-2">
                     {faq.question}
                   </h3>
