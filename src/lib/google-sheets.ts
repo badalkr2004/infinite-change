@@ -52,10 +52,6 @@ export async function addToNewsletterSheet(data: NewsletterSubscription) {
       },
     });
 
-    console.log(
-      "Newsletter subscription added to Google Sheets:",
-      response.data
-    );
     return { success: true, data: response.data };
   } catch (error) {
     console.error("Error adding to Google Sheets:", error);

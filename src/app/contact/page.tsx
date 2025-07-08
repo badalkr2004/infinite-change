@@ -39,8 +39,6 @@ const Contact = () => {
   });
 
   const onSubmit = async (values: z.infer<typeof contactFormSchema>) => {
-    console.log("Form submitted:", values);
-
     try {
       const response = await sendContactEmails({
         name: values.name,

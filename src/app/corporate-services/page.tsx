@@ -6,7 +6,7 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
-
+import { CalendlyCustomPopup } from "@/components/calendly";
 const CorporateServices = () => {
   const services = [
     {
@@ -21,6 +21,8 @@ const CorporateServices = () => {
         "Leadership assessment",
         "Strategic thinking enhancement",
       ],
+      calendlyLink:
+        "https://calendly.com/infinitecoachingspace/chemistry-discovery-session?back=1&month=2025-07",
     },
     {
       icon: Target,
@@ -147,14 +149,16 @@ const CorporateServices = () => {
             organization&apos;s culture, leadership, and performance through
             evidence-based coaching and training programs.
           </p>
-          <Button
-            asChild
-            size="sm"
-            className="bg-[#2C3746] hover:bg-[#DC842E] text-white px-8 py-3 transition-all duration-300"
-            style={{ textDecoration: "none" }}
-          >
-            <Link href="/contact">Schedule Consultation</Link>
-          </Button>
+          <div className="w-[220px] mx-auto">
+            <Button
+              asChild
+              size="sm"
+              className=" bg-[#2C3746] hover:bg-[#DC842E] text-white px-8 py-3 transition-all duration-300"
+              style={{ textDecoration: "none" }}
+            >
+              <Link href="/contact">Schedule Consultation</Link>
+            </Button>
+          </div>
         </div>
       </section>
 
@@ -211,12 +215,22 @@ const CorporateServices = () => {
                         ))}
                       </ul>
                     </div>
-                    <Button
-                      variant="ghost"
-                      className="w-full text-primary hover:bg-[#DC842E] hover:text-white group-hover:bg-[#DC842E] group-hover:text-white transition-colors"
-                    >
-                      Book Now
-                    </Button>
+
+                    {service.calendlyLink ? (
+                      <CalendlyCustomPopup
+                        url={service?.calendlyLink}
+                        className="mr-4"
+                      >
+                        Book Now
+                      </CalendlyCustomPopup>
+                    ) : (
+                      <Button
+                        variant="ghost"
+                        className="w-full text-primary hover:bg-[#DC842E] hover:text-white group-hover:bg-[#DC842E] group-hover:text-white transition-colors"
+                      >
+                        Book Now
+                      </Button>
+                    )}
                   </CardContent>
                 </Card>
               ))}
@@ -311,17 +325,16 @@ const CorporateServices = () => {
             their potential with Infinite Change.
           </motion.p>
           <motion.div
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+            className="flex flex-col sm:flex-row gap-4 mx-auto lg:w-[440px] justify-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
             viewport={{ once: true }}
           >
             <Button asChild size="lg">
-              <Link href="/contact">Get Started Today</Link>
-            </Button>
-            <Button asChild size="lg">
-              <Link href="/about">Learn More About Us</Link>
+              <Link href="mailto:infinitechange25@gmail.com">
+                Get in touch with our advisor
+              </Link>
             </Button>
           </motion.div>
         </motion.div>

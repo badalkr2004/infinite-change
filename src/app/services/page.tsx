@@ -7,6 +7,7 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
+import { CalendlyCustomPopup } from "@/components/calendly";
 
 const Services = () => {
   const mindfulnessServices = [
@@ -54,6 +55,8 @@ const Services = () => {
         "Stress management",
         "Foundation building",
       ],
+      calendlyLink:
+        "https://calendly.com/infinitecoachingspace/mindfulness-mbsr-for-beginners?month=2025-08&date=2025-08-22",
     },
     {
       title: "Intermediate MBSR Program",
@@ -281,12 +284,21 @@ const Services = () => {
                       ))}
                     </ul>
                   </div>
-                  <Button
-                    variant="outline"
-                    className="w-full border-[#DC842E] text-[#ffffff] hover:bg-[#DC842E] hover:text-[#DC842E]-foreground"
-                  >
-                    Join Program
-                  </Button>
+                  {service.calendlyLink ? (
+                    <CalendlyCustomPopup
+                      url={service?.calendlyLink}
+                      className="mr-4"
+                    >
+                      Join Program
+                    </CalendlyCustomPopup>
+                  ) : (
+                    <Button
+                      variant="ghost"
+                      className="w-full text-primary hover:bg-[#DC842E] hover:text-white group-hover:bg-[#DC842E] group-hover:text-white transition-colors"
+                    >
+                      Join Program
+                    </Button>
+                  )}
                 </CardContent>
               </Card>
             ))}

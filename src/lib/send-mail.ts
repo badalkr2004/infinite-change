@@ -49,8 +49,6 @@ export async function sendMail({
       html: html ? html : "",
     });
 
-    console.log("Message Sent", info.messageId);
-    console.log("Mail sent to", sendTo || SITE_MAIL_RECEIVER);
     return { success: true, messageId: info.messageId };
   } catch (error) {
     console.error("Error sending email:", error);
