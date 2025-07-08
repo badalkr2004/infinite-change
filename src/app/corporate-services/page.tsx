@@ -293,11 +293,10 @@ const CorporateServices = () => {
         </div>
       </section>
 
+      {/* add divider here  */}
+
       {/* CTA Section */}
-      <section
-        className="py-20 px-4 sm:px-6 lg:px-8"
-        style={{ background: "#273548", color: "#FFFFCC" }}
-      >
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-secondary border border-t-[#fff]">
         <motion.div
           className="container mx-auto text-center"
           initial={{ opacity: 0, scale: 0.9 }}
@@ -332,7 +331,10 @@ const CorporateServices = () => {
             viewport={{ once: true }}
           >
             <Button asChild size="lg">
-              <Link href="mailto:infinitechange25@gmail.com">
+              <Link
+                href="mailto:infinitechange25@gmail.com"
+                className="no-underline"
+              >
                 Get in touch with our advisor
               </Link>
             </Button>

@@ -6,7 +6,7 @@ import NewsLetter from "./NewsLetter";
 
 const Footer = () => {
   return (
-    <footer className="" style={{ background: "#73ABB9", color: "#FFFFCC" }}>
+    <footer className="" style={{ background: "#273548", color: "#FFFFCC" }}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
@@ -15,9 +15,9 @@ const Footer = () => {
               <Image
                 src="/logo-new.png"
                 alt="Infinite Change"
-                className="h-25 w-25 object-contain"
-                width={500}
-                height={500}
+                className="h-35 w-35 object-contain"
+                width={600}
+                height={600}
               />
               <div>
                 <h3 className="text-lg font-bold">INFINITE CHANGE</h3>
@@ -26,7 +26,7 @@ const Footer = () => {
                 </p>
               </div>
             </div>
-            <p className="text-sm opacity-80">
+            <p className="text-md opacity-80">
               Empowering individuals and organizations through coaching,
               training, and development programs.
             </p>

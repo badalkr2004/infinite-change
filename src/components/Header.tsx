@@ -19,7 +19,7 @@ const Header = () => {
   return (
     <>
       {/* Navigation Bar - fixed at top */}
-      <nav className="w-full fixed top-0 left-0 right-0 z-50 border-b border-gray-200 bg-[#273548] ">
+      <nav className="w-full fixed top-0 left-0 right-0 z-50 border-b border-gray-200 bg-[#fff] ">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
           {/* Logo and Company Name/Tagline on the left */}
           <Link href="/" className="flex items-center space-x-3 min-w-[220px]">
@@ -32,10 +32,10 @@ const Header = () => {
               priority
             />
             <div className="hidden sm:block">
-              <h1 className="text-[10px] lg:text-sm font-bold font-avenir-regular text-[#fff] leading-tight">
+              <h1 className="text-[10px] lg:text-sm font-bold font-avenir-regular text-[#273548] leading-tight">
                 INFINITE CHANGE
               </h1>
-              <p className="text-[8px] lg:text-xs mr-2 md:mr-0 uppercase tracking-wider font-avenir-light text-[#fff]">
+              <p className="text-[8px] lg:text-xs mr-2 md:mr-0 uppercase tracking-wider font-avenir-light text-[#273548]">
                 COACHING • TRAINING • DEVELOPMENT
               </p>
             </div>
@@ -47,7 +47,7 @@ const Header = () => {
               <Link
                 key={item.name}
                 href={item.href}
-                className="transition-colors  text-[#fff] hover:text-[#DC842E] focus:text-[#DC842E] font-avenir-regular text-xs sm:text-[8px] md:text-[12px] lg:text-base text-center"
+                className="transition-colors  text-[#273548] hover:text-[#DC842E] focus:text-[#DC842E] font-avenir-regular text-xs sm:text-[8px] md:text-[12px] lg:text-base text-center"
                 style={{ textDecoration: "none", fontWeight: "bold" }}
               >
                 {item.name}
@@ -62,7 +62,9 @@ const Header = () => {
               variant="accent"
               className="font-avenir-regular w-full"
             >
-              <Link href="/contact">Get Started</Link>
+              <Link className="no-underline" href="/contact">
+                Get Started
+              </Link>
             </Button>
           </div>
 
@@ -73,9 +75,9 @@ const Header = () => {
             aria-label="Toggle menu"
           >
             {isMenuOpen ? (
-              <X className="h-6 w-6 text-[#fff] cursor-pointer" />
+              <X className="h-6 w-6 text-[#273548] cursor-pointer" />
             ) : (
-              <Menu className="h-6 w-6 text-[#fff] cursor-pointer" />
+              <Menu className="h-6 w-6 text-[#273548] cursor-pointer" />
             )}
           </button>
         </div>

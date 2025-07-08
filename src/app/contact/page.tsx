@@ -207,11 +207,10 @@ const Contact = () => {
                     </p>
                   )}
                 </div>
-
-                <div className="w-[220px]">
+                <div className="w-[205px] ">
                   <Button
                     type="submit"
-                    className="w-full sm:w-auto bg-[#2C3746] hover:opacity-90"
+                    className="w-[220px] sm:w-auto bg-[#2C3746] hover:opacity-90"
                     size="lg"
                     disabled={isSubmitting}
                   >

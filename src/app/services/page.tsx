@@ -370,10 +370,7 @@ const Services = () => {
       </section>
 
       {/* CTA Section */}
-      <section
-        className="py-20 px-4 sm:px-6 lg:px-8"
-        style={{ background: "#273548", color: "#FFFFCC" }}
-      >
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-secondary">
         <motion.div
           className="container mx-auto text-center"
           initial={{ opacity: 0, scale: 0.9 }}
@@ -408,10 +405,14 @@ const Services = () => {
             viewport={{ once: true }}
           >
             <Button asChild size="lg">
-              <Link href="/contact">Book Now</Link>
+              <Link href="/contact" className="no-underline">
+                Book Now
+              </Link>
             </Button>
             <Button asChild size="lg">
-              <Link href="/about">Learn More About Us</Link>
+              <Link href="/about" className="no-underline">
+                Learn More About Us
+              </Link>
             </Button>
           </motion.div>
         </motion.div>

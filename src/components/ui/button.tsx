@@ -48,12 +48,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const Comp = asChild ? Slot : "button";
     return (
       <span
-        className="inline-block p-[10px] bg-white rounded-[0px] transition-all duration-300 border-[5px] border-[#273548] w-full max-w-[350px] sm:max-w-none"
-        style={{ borderRadius: "10px" }}
+        className="inline-block p-[5px] bg-white rounded-[0px] transition-all duration-300 border-[5px] border-[#273548] w-full max-w-[250px] sm:max-w-none"
+        style={{ borderRadius: "5px" }}
       >
         <Comp
           className={cn(
-            "inline-flex items-center justify-center gap-[10px] whitespace-nowrap rounded-none text-base font-medium font-avenir-regular ring-offset-background transition-all duration-300 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-[#2C3746] text-white border-none px-4 py-2 sm:px-6 sm:py-3 hover:bg-[#DC842E] w-full",
+            "inline-flex items-center justify-center gap-[5px] whitespace-nowrap rounded-none text-base font-medium font-avenir-regular ring-offset-background transition-all duration-300 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-[#2C3746] text-white border-none px-4 py-2 sm:px-6 sm:py-3 hover:bg-[#DC842E] w-full",
             className
           )}
           ref={ref}
