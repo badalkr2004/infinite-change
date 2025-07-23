@@ -8,124 +8,96 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import { CalendlyCustomPopup } from "@/components/calendly";
+import { useEffect, useState } from "react";
+
+interface MindfulnessService {
+  id: string;
+  title: string;
+  description: string;
+  duration: string;
+  level: string;
+  features: string[];
+  calendlyLink?: string | null;
+}
+
+interface CounsellingService {
+  id: string;
+  title: string;
+  description: string;
+  duration: string;
+  level: string;
+  features: string[];
+  calendlyLink?: string | null;
+}
+
+interface BeyondWordsService {
+  id: string;
+  title: string;
+  description: string;
+  features: string[];
+  calendlyLink?: string | null;
+}
 
 const Services = () => {
-  const mindfulnessServices = [
-    {
-      title: "Adult Mindfulness Programs",
-      description:
-        "Comprehensive mindfulness training for professionals seeking to reduce stress and improve focus.",
-      duration: "8-week program",
-      level: "All levels",
-      features: [
-        "Meditation techniques",
-        "Stress reduction",
-        "Focus improvement",
-        "Emotional regulation",
-        "Work-life balance",
-      ],
-    },
-    {
-      title: "Children's Mindfulness",
-      description:
-        "Age-appropriate mindfulness practices to help children develop emotional intelligence and coping skills.",
-      duration: "6-week program",
-      level: "Ages 6-16",
-      features: [
-        "Age-appropriate techniques",
-        "Emotional awareness",
-        "Self-regulation",
-        "Confidence building",
-        "Social skills",
-      ],
-    },
-  ];
+  const [mindfulnessServices, setMindfulnessServices] = useState<MindfulnessService[]>([]);
+  const [counsellingServices, setCounsellingServices] = useState<CounsellingService[]>([]);
+  const [beyondWordsServices, setBeyondWordsServices] = useState<BeyondWordsService[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const counsellingServices = [
-    {
-      title: "Beginner's MBSR Program",
-      description:
-        "Introduction to Mindfulness-Based Stress Reduction for those new to mindfulness practices.",
-      duration: "4-week program",
-      level: "Beginner",
-      features: [
-        "Basic meditation",
-        "Breathing techniques",
-        "Body awareness",
-        "Stress management",
-        "Foundation building",
-      ],
-      calendlyLink:
-        "https://calendly.com/infinitecoachingspace/mindfulness-mbsr-for-beginners?month=2025-08&date=2025-08-22",
-    },
-    {
-      title: "Intermediate MBSR Program",
-      description:
-        "Advanced mindfulness techniques for those with some experience in meditation and stress reduction.",
-      duration: "6-week program",
-      level: "Intermediate",
-      features: [
-        "Advanced techniques",
-        "Deeper practices",
-        "Mindful movement",
-        "Cognitive awareness",
-        "Integration skills",
-      ],
-    },
-    {
-      title: "Advanced MBSR Program",
-      description:
-        "Comprehensive program for experienced practitioners seeking to deepen their mindfulness journey.",
-      duration: "8-week program",
-      level: "Advanced",
-      features: [
-        "Expert guidance",
-        "Complex practices",
-        "Leadership skills",
-        "Teaching preparation",
-        "Personal mastery",
-      ],
-    },
-  ];
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        setLoading(true);
+        
+        // Fetch all services in parallel
+        const [mindfulnessRes, counsellingRes, beyondWordsRes] = await Promise.all([
+          fetch('/api/mindfulness-services'),
+          fetch('/api/counselling-services'),
+          fetch('/api/beyond-words-services')
+        ]);
+        
+        if (!mindfulnessRes.ok || !counsellingRes.ok || !beyondWordsRes.ok) {
+          throw new Error('Failed to fetch services');
+        }
+        
+        const mindfulnessData = await mindfulnessRes.json();
+        const counsellingData = await counsellingRes.json();
+        const beyondWordsData = await beyondWordsRes.json();
+        
+        setMindfulnessServices(mindfulnessData);
+        setCounsellingServices(counsellingData);
+        setBeyondWordsServices(beyondWordsData);
+      } catch (error) {
+        console.error('Error fetching services:', error);
+        setError('Failed to load services. Please try again.');
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const beyondWordsServices = [
-    {
-      title: "Transformational Coaching",
-      description:
-        "Deep, holistic coaching that addresses all aspects of personal and professional transformation.",
-      features: [
-        "Life purpose discovery",
-        "Values alignment",
-        "Goal achievement",
-        "Mindset shifts",
-        "Sustainable change",
-      ],
-    },
-    {
-      title: "Unlock Your Potential",
-      description:
-        "Intensive program designed to help you discover and unleash your hidden talents and capabilities.",
-      features: [
-        "Strength assessment",
-        "Talent development",
-        "Confidence building",
-        "Skill enhancement",
-        "Performance optimization",
-      ],
-    },
-    {
-      title: "A Journey of Discovery",
-      description:
-        "Guided exploration of self-awareness, personal growth, and life direction.",
-      features: [
-        "Self-exploration",
-        "Personal insights",
-        "Growth planning",
-        "Direction finding",
-        "Purpose clarification",
-      ],
-    },
-  ];
+    fetchServices();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="h-8 w-8 rounded-full border-4 border-t-primary border-r-transparent border-l-transparent border-b-transparent animate-spin"></div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="p-4 bg-destructive/15 text-destructive rounded-md">
+          {error}
+        </div>
+      </div>
+    );
+  }
+   
+
 
   const levelColors = {
     "All levels": "bg-primary",

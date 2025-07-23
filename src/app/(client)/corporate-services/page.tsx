@@ -1,5 +1,7 @@
 "use client";
 import { Users, Building, Brain, Shield, Target } from "lucide-react";
+import { useEffect, useState } from "react";
+import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -7,115 +9,74 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import { CalendlyCustomPopup } from "@/components/calendly";
+
+interface CorporateService {
+  id: string;
+  icon: string;
+  category: string;
+  title: string;
+  description: string;
+  features: string[];
+  calendlyLink?: string | null;
+}
+
 const CorporateServices = () => {
-  const services = [
-    {
-      icon: Users,
-      category: "Coaching",
-      title: "Executive Coaching",
-      description:
-        "One-on-one leadership development for senior executives and high-potential leaders.",
-      features: [
-        "Personalized development plans",
-        "360-degree feedback",
-        "Leadership assessment",
-        "Strategic thinking enhancement",
-      ],
-      calendlyLink:
-        "https://calendly.com/infinitecoachingspace/chemistry-discovery-session?back=1&month=2025-07",
-    },
-    {
-      icon: Target,
-      category: "Coaching",
-      title: "Career Coaching",
-      description:
-        "Professional development support for career transitions and advancement.",
-      features: [
-        "Career pathway planning",
-        "Skills assessment",
-        "Interview preparation",
-        "Personal branding",
-      ],
-    },
-    {
-      icon: Users,
-      category: "Coaching",
-      title: "Team Coaching",
-      description:
-        "Collaborative coaching to enhance team dynamics and collective performance.",
-      features: [
-        "Team assessment",
-        "Communication improvement",
-        "Conflict resolution",
-        "Collaboration enhancement",
-      ],
-    },
-    {
-      icon: Building,
-      category: "DEI",
-      title: "Inclusive Leadership Training",
-      description:
-        "Develop leaders who can create and sustain inclusive work environments.",
-      features: [
-        "Unconscious bias awareness",
-        "Cultural competency",
-        "Inclusive decision-making",
-        "Equity strategies",
-      ],
-    },
-    {
-      icon: Shield,
-      category: "DEI",
-      title: "Unconscious Bias Workshop",
-      description:
-        "Interactive sessions to recognize and address unconscious biases in the workplace.",
-      features: [
-        "Bias identification",
-        "Impact assessment",
-        "Mitigation strategies",
-        "Action planning",
-      ],
-    },
-    {
-      icon: Target,
-      category: "DEI",
-      title: "Psychological Safety & Allyship Training",
-      description:
-        "Create environments where all team members feel safe to contribute authentically.",
-      features: [
-        "Safety assessment",
-        "Allyship skills",
-        "Inclusive communication",
-        "Trust building",
-      ],
-    },
-    {
-      icon: Brain,
-      category: "Workplace Mindfulness",
-      title: "Mindfulness Programs",
-      description:
-        "Comprehensive mindfulness training to reduce stress and improve focus.",
-      features: [
-        "Meditation techniques",
-        "Stress reduction",
-        "Focus improvement",
-        "Emotional regulation",
-      ],
-    },
-    {
-      icon: Users,
-      category: "Team Building",
-      title: "Team Building Workshops",
-      description:
-        "Engaging activities designed to strengthen team bonds and collaboration.",
-      features: [
-        "Trust exercises",
-        "Communication games",
-        "Problem-solving challenges",
-        "Relationship building",
-      ],
-    },
-  ];
+  const [services, setServices] = useState<CorporateService[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch('/api/corporate-services');
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch services');
+        }
+        
+        const data = await response.json();
+        setServices(data);
+      } catch (error) {
+        console.error('Error fetching corporate services:', error);
+        setError('Failed to load services. Please try again.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchServices();
+  }, []);
+
+  // Icon mapping function to convert string icon names to components
+  const getIconComponent = (iconName: string) => {
+    switch (iconName) {
+      case 'Users': return Users;
+      case 'Building': return Building;
+      case 'Brain': return Brain;
+      case 'Shield': return Shield;
+      case 'Target': return Target;
+      default: return Users;
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="h-8 w-8 rounded-full border-4 border-t-primary border-r-transparent border-l-transparent border-b-transparent animate-spin"></div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="p-4 bg-destructive/15 text-destructive rounded-md">
+          {error}
+        </div>
+      </div>
+    );
+  }
 
   const groupedServices = services.reduce((acc, service) => {
     if (!acc[service.category]) {
@@ -189,7 +150,7 @@ const CorporateServices = () => {
                         categoryColors[category as keyof typeof categoryColors]
                       } rounded-lg flex items-center justify-center mb-4`}
                     >
-                      <service.icon className="h-6 w-6 text-white" />
+                      {React.createElement(getIconComponent(service.icon), { className: "h-6 w-6 text-white" })}
                     </div>
                     <CardTitle className="text-xl text-foreground">
                       {service.title}
