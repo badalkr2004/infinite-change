@@ -29,17 +29,17 @@ const CorporateServices = () => {
     const fetchServices = async () => {
       try {
         setLoading(true);
-        const response = await fetch('/api/corporate-services');
-        
+        const response = await fetch("/api/corporate-services");
+
         if (!response.ok) {
-          throw new Error('Failed to fetch services');
+          throw new Error("Failed to fetch services");
         }
-        
+
         const data = await response.json();
         setServices(data);
       } catch (error) {
-        console.error('Error fetching corporate services:', error);
-        setError('Failed to load services. Please try again.');
+        console.error("Error fetching corporate services:", error);
+        setError("Failed to load services. Please try again.");
       } finally {
         setLoading(false);
       }
@@ -51,12 +51,18 @@ const CorporateServices = () => {
   // Icon mapping function to convert string icon names to components
   const getIconComponent = (iconName: string) => {
     switch (iconName) {
-      case 'Users': return Users;
-      case 'Building': return Building;
-      case 'Brain': return Brain;
-      case 'Shield': return Shield;
-      case 'Target': return Target;
-      default: return Users;
+      case "Users":
+        return Users;
+      case "Building":
+        return Building;
+      case "Brain":
+        return Brain;
+      case "Shield":
+        return Shield;
+      case "Target":
+        return Target;
+      default:
+        return Users;
     }
   };
 
@@ -150,7 +156,9 @@ const CorporateServices = () => {
                         categoryColors[category as keyof typeof categoryColors]
                       } rounded-lg flex items-center justify-center mb-4`}
                     >
-                      {React.createElement(getIconComponent(service.icon), { className: "h-6 w-6 text-white" })}
+                      {React.createElement(getIconComponent(service.icon), {
+                        className: "h-6 w-6 text-white",
+                      })}
                     </div>
                     <CardTitle className="text-xl text-foreground">
                       {service.title}
@@ -201,7 +209,7 @@ const CorporateServices = () => {
       ))}
 
       {/* Process Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-secondary">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 ">
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
@@ -239,7 +247,7 @@ const CorporateServices = () => {
               },
             ].map((phase, index) => (
               <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-[#2C3746] from-primary to-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-naples-yellow rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-white font-bold text-lg">
                     {phase.step}
                   </span>
@@ -257,7 +265,7 @@ const CorporateServices = () => {
       {/* add divider here  */}
 
       {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-secondary border border-t-[#fff]">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-background border border-t-[#fff]">
         <motion.div
           className="container mx-auto text-center"
           initial={{ opacity: 0, scale: 0.9 }}
@@ -266,7 +274,7 @@ const CorporateServices = () => {
           viewport={{ once: true, margin: "-50px" }}
         >
           <motion.h2
-            className="text-3xl md:text-4xl font-bold text-primary-foreground mb-4"
+            className="text-3xl md:text-4xl font-bold text-moonstone mb-4"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -275,7 +283,7 @@ const CorporateServices = () => {
             Ready to Begin Your Transformation?
           </motion.h2>
           <motion.p
-            className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto"
+            className="text-xl text-neutral-600 mb-8 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}

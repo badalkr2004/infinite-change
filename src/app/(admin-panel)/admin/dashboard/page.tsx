@@ -1,12 +1,14 @@
 'use client';
 
-import { useSession } from 'next-auth/react';
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useEffect, useState } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { Layers, Users, FileText, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+
+import { useAuth } from '@/lib/auth-client';
 
 interface ServiceCount {
   mindfulnessServices: number;
@@ -16,7 +18,7 @@ interface ServiceCount {
 }
 
 export default function Dashboard() {
-  const { data: session } = useSession();
+  const { user, loading: authLoading } = useAuth();
   const [counts, setCounts] = useState<ServiceCount>({
     mindfulnessServices: 0,
     counsellingServices: 0,
@@ -79,7 +81,7 @@ export default function Dashboard() {
     },
   ];
 
-  if (loading) {
+  if (loading || authLoading) {
     return (
       <div className="flex items-center justify-center h-full">
         <div className="h-8 w-8 rounded-full border-4 border-t-primary border-r-transparent border-l-transparent border-b-transparent animate-spin"></div>
@@ -92,7 +94,7 @@ export default function Dashboard() {
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold">Dashboard</h1>
         <p className="text-sm text-muted-foreground">
-          Welcome back, {session?.user?.name || 'Admin'}
+          Welcome back, {user?.name || 'Admin'}
         </p>
       </div>
 
@@ -204,7 +206,7 @@ export default function Dashboard() {
             </div>
             <div className="flex items-center justify-between">
               <span className="text-sm text-muted-foreground">User Role</span>
-              <span className="text-sm font-medium">{session?.user?.role}</span>
+              <span className="text-sm font-medium">{user?.role || 'Unknown'}</span>
             </div>
           </CardContent>
         </Card>

@@ -16,6 +16,12 @@
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
 
+  --color-ghost-white: hsl(var(--ghost-white));
+  --color-mantis: hsl(var(--mantis));
+  --color-cinnabar: hsl(var(--cinnabar));
+  --color-naples-yellow: hsl(var(--naples-yellow));
+  --color-moonstone: hsl(var(--moonstone));
+
   --color-primary: hsl(var(--primary));
   --color-primary-foreground: hsl(var(--primary-foreground));
 
@@ -124,6 +130,12 @@ All colors MUST be HSL.
     --primary: 195 65% 45%; /* More saturated blue-teal */
     --primary-foreground: 0 0% 100%;
 
+    --ghost-white: 218 100% 98%;
+    --mantis: 95 40% 53%;
+    --cinnabar: 12 76% 49%;
+    --naples-yellow: 47 79% 61%;
+    --moonstone: 191 31% 60%;
+
     --secondary: 210 25% 25%; /* Adjusted for better contrast */
     --secondary-foreground: 0 0% 100%;
 
@@ -226,7 +238,7 @@ All colors MUST be HSL.
   }
 
   body {
-    background: #4A5361 !important;
+    background: #4a5361 !important;
     color: #fff;
   }
 
@@ -236,10 +248,10 @@ All colors MUST be HSL.
     transition: color 0.2s;
   }
   a:hover {
-    color: #DC842E;
+    color: #dc842e;
   }
   a:visited {
-    color: #73ABB9;
+    color: #73abb9;
   }
 }
 

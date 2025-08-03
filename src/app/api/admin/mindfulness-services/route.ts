@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { getCurrentUser } from "@/lib/jwt";
 import { z } from "zod";
 
 // Schema for validation
@@ -16,10 +15,10 @@ const mindfulnessServiceSchema = z.object({
 
 export async function GET() {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await getCurrentUser();
 
     // Check if user is authenticated and is admin
-    if (!session || session.user.role !== "ADMIN") {
+    if (!session || session.role !== "ADMIN") {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
@@ -39,10 +38,10 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await getCurrentUser();
 
     // Check if user is authenticated and is admin
-    if (!session || session.user.role !== "ADMIN") {
+    if (!session || session.role !== "ADMIN") {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 

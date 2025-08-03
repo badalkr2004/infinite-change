@@ -85,7 +85,7 @@ const About = () => {
                     transition={{ duration: 0.5, delay: 0.2 }}
                     viewport={{ once: true }}
                   >
-                    <div className="bg-[#2C3746] from-primary to-accent p-3 rounded-full">
+                    <div className="bg-gradient-to-br from-moonstone to-cinnabar via-naples-yellow p-3 rounded-full">
                       <Target className="h-6 w-6 text-primary-foreground" />
                     </div>
                     <h2 className="text-2xl font-bold text-foreground">
@@ -151,7 +151,7 @@ const About = () => {
                     transition={{ duration: 0.5, delay: 0.2 }}
                     viewport={{ once: true }}
                   >
-                    <div className="bg-[#2C3746] from-accent to-warning p-3 rounded-full">
+                    <div className="bg-gradient-to-br from-moonstone to-cinnabar via-naples-yellow p-3 rounded-full">
                       <Eye className="h-6 w-6 text-accent-foreground" />
                     </div>
                     <h2 className="text-2xl font-bold text-foreground">
@@ -204,7 +204,7 @@ const About = () => {
       </section>
 
       {/* Values Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-secondary">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 ">
         <div className="container mx-auto">
           <motion.div
             className="text-center mb-16"
@@ -234,7 +234,7 @@ const About = () => {
                 <Card className="bg-background border-border hover:shadow-lg transition-shadow duration-300 h-full">
                   <CardContent className="p-6 text-center space-y-4">
                     <motion.div
-                      className="w-16 h-16 bg-[#2C3746] from-primary to-accent rounded-full mx-auto flex items-center justify-center"
+                      className="w-16 h-16 bg-gradient-to-br from-moonstone to-cinnabar via-naples-yellow rounded-full mx-auto flex items-center justify-center"
                       whileHover={{ scale: 1.1, rotate: 10 }}
                       transition={{ duration: 0.2 }}
                     >

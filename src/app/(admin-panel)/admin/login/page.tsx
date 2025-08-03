@@ -1,11 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { signIn } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { login } from '@/lib/auth-client';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -21,7 +20,7 @@ type LoginFormValues = z.infer<typeof loginSchema>;
 export default function AdminLoginPage() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
+
   
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
@@ -49,18 +48,14 @@ export default function AdminLoginPage() {
         ? cleanCallbackUrl 
         : '/admin/dashboard';
       
-      const response = await signIn('credentials', {
-        redirect: false,
-        email: values.email,
-        password: values.password,
-        callbackUrl: finalCallbackUrl,
-      });
+      const response = await login(values.email, values.password);
 
-      if (response?.error) {
-        setError('Invalid email or password');
-      } else if (response?.ok) {
-        router.push(finalCallbackUrl);
-        router.refresh();
+      if (!response.success) {
+        setError(response.error || 'Invalid email or password');
+      } else {
+        // Use window.location.replace for a hard redirect to avoid stale session state
+        // This is critical for auth to work properly in production
+        window.location.replace(finalCallbackUrl);
       }
     } catch (err) {
       setError('An unexpected error occurred');

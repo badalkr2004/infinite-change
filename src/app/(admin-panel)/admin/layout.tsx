@@ -2,17 +2,36 @@
 
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { SessionProvider, useSession } from 'next-auth/react';
+import { useEffect, useState } from 'react';
 import { LogOut, LayoutDashboard, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-import { signOut } from 'next-auth/react';
+import { logout, getCurrentUser, User } from '@/lib/auth-client';
 import '@/styles/admin-theme.css';
 
-// Create a client component that uses useSession
+// Create a client component that uses our custom auth
 function AdminLayoutContent({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const { data: session, status } = useSession();
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
+  
+  // Fetch user data on component mount
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        if (pathname !== '/admin/login') {
+          const userData = await getCurrentUser();
+          setUser(userData);
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchUser();
+  }, [pathname]);
   
   // Skip layout rendering for login page
   if (pathname === '/admin/login') {
@@ -20,7 +39,19 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
   }
 
   // Loading state
-  if (status === 'loading') {
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="h-8 w-8 rounded-full border-4 border-t-primary border-r-transparent border-l-transparent border-b-transparent animate-spin"></div>
+      </div>
+    );
+  }
+  
+  // Redirect to login if not authenticated after loading is complete
+  if (!loading && !user) {
+    if (typeof window !== 'undefined') {
+      window.location.replace(`/admin/login?callbackUrl=${encodeURIComponent(pathname)}`);
+    }
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="h-8 w-8 rounded-full border-4 border-t-primary border-r-transparent border-l-transparent border-b-transparent animate-spin"></div>
@@ -73,17 +104,17 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
             <div className="flex items-center gap-2">
               <Avatar className="h-8 w-8">
                 <AvatarFallback className="bg-black text-white">
-                  {session?.user?.name?.charAt(0) || 'A'}
+                  {user?.name?.charAt(0) || 'A'}
                 </AvatarFallback>
               </Avatar>
               <span className="text-sm font-medium hidden sm:inline-block">
-                {session?.user?.name || 'Admin'}
+                {user?.name || 'Admin'}
               </span>
             </div>
             <Button
               variant="admin-outline"
               size="icon"
-              onClick={() => signOut({ callbackUrl: '/admin/login' })}
+              onClick={() => logout()}
               title="Sign Out"
               className='bg-black text-white hover:text-black rounded w-[100px]'
             >
@@ -120,7 +151,7 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
               variant="admin-outline"
               size="sm"
               className="w-full flex items-center justify-center bg-black text-white hover:text-black rounded" 
-              onClick={() => signOut({ callbackUrl: '/admin/login' })}
+              onClick={() => logout()}
             >
               <LogOut className="h-4 w-4 mr-2" />
               Sign Out
@@ -140,7 +171,7 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
   );
 }
 
-// Main layout component that wraps the content with SessionProvider
+// Main layout component
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   
@@ -149,9 +180,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     return <>{children}</>;
   }
   
-  return (
-    <SessionProvider>
-      <AdminLayoutContent>{children}</AdminLayoutContent>
-    </SessionProvider>
-  );
+  return <AdminLayoutContent>{children}</AdminLayoutContent>;
+
 }

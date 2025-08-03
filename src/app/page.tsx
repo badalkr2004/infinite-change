@@ -87,9 +87,9 @@ const Index = () => {
           />
         </div>
         <div className="mb-4 text-center max-w-2xl">
-          <p className="text-base md:text-lg text-[#273548] font-avenir-regular">
-            Empowering individuals and organisations through transformative
-            coaching, comprehensive training and strategic development programs.
+          <p className="text-base md:text-lg bg-gradient-to-br from-naples-yellow via-mantis to-cinnabar bg-clip-text text-transparent font-avenir-regular tracking-widest py-2 font-bold">
+            Empowerment through coaching, resilience through reflection,
+            elevation through mindful transformation.
           </p>
         </div>
       </motion.div>
@@ -180,7 +180,7 @@ const Index = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-secondary">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 ">
         <div className="container mx-auto">
           <motion.div
             className="text-center mb-16"
@@ -189,7 +189,7 @@ const Index = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true, margin: "-50px" }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-mantis mb-4">
               What Our Clients Say
             </h2>
             <p className="text-xl text-muted-foreground">
@@ -242,7 +242,7 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-secondary">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 ">
         <motion.div
           className="container mx-auto text-center"
           initial={{ opacity: 0, scale: 0.9 }}
@@ -251,7 +251,7 @@ const Index = () => {
           viewport={{ once: true, margin: "-50px" }}
         >
           <motion.h2
-            className="text-3xl md:text-4xl font-bold text-primary-foreground mb-4"
+            className="text-3xl md:text-4xl text-moonstone font-bold  mb-4"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -260,7 +260,7 @@ const Index = () => {
             Ready to Begin Your Transformation?
           </motion.h2>
           <motion.p
-            className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto"
+            className="text-xl text-neutral-600 mb-8 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}

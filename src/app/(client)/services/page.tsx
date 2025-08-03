@@ -39,9 +39,15 @@ interface BeyondWordsService {
 }
 
 const Services = () => {
-  const [mindfulnessServices, setMindfulnessServices] = useState<MindfulnessService[]>([]);
-  const [counsellingServices, setCounsellingServices] = useState<CounsellingService[]>([]);
-  const [beyondWordsServices, setBeyondWordsServices] = useState<BeyondWordsService[]>([]);
+  const [mindfulnessServices, setMindfulnessServices] = useState<
+    MindfulnessService[]
+  >([]);
+  const [counsellingServices, setCounsellingServices] = useState<
+    CounsellingService[]
+  >([]);
+  const [beyondWordsServices, setBeyondWordsServices] = useState<
+    BeyondWordsService[]
+  >([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -49,28 +55,29 @@ const Services = () => {
     const fetchServices = async () => {
       try {
         setLoading(true);
-        
+
         // Fetch all services in parallel
-        const [mindfulnessRes, counsellingRes, beyondWordsRes] = await Promise.all([
-          fetch('/api/mindfulness-services'),
-          fetch('/api/counselling-services'),
-          fetch('/api/beyond-words-services')
-        ]);
-        
+        const [mindfulnessRes, counsellingRes, beyondWordsRes] =
+          await Promise.all([
+            fetch("/api/mindfulness-services"),
+            fetch("/api/counselling-services"),
+            fetch("/api/beyond-words-services"),
+          ]);
+
         if (!mindfulnessRes.ok || !counsellingRes.ok || !beyondWordsRes.ok) {
-          throw new Error('Failed to fetch services');
+          throw new Error("Failed to fetch services");
         }
-        
+
         const mindfulnessData = await mindfulnessRes.json();
         const counsellingData = await counsellingRes.json();
         const beyondWordsData = await beyondWordsRes.json();
-        
+
         setMindfulnessServices(mindfulnessData);
         setCounsellingServices(counsellingData);
         setBeyondWordsServices(beyondWordsData);
       } catch (error) {
-        console.error('Error fetching services:', error);
-        setError('Failed to load services. Please try again.');
+        console.error("Error fetching services:", error);
+        setError("Failed to load services. Please try again.");
       } finally {
         setLoading(false);
       }
@@ -96,8 +103,6 @@ const Services = () => {
       </div>
     );
   }
-   
-
 
   const levelColors = {
     "All levels": "bg-primary",
@@ -198,7 +203,7 @@ const Services = () => {
       </section>
 
       {/* Counselling Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-secondary">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 ">
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <div className="flex items-center justify-center space-x-3 mb-4">
@@ -342,7 +347,7 @@ const Services = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-secondary">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 ">
         <motion.div
           className="container mx-auto text-center"
           initial={{ opacity: 0, scale: 0.9 }}
@@ -351,7 +356,7 @@ const Services = () => {
           viewport={{ once: true, margin: "-50px" }}
         >
           <motion.h2
-            className="text-3xl md:text-4xl font-bold text-primary-foreground mb-4"
+            className="text-3xl md:text-4xl font-bold text-moonstone mb-4"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -360,7 +365,7 @@ const Services = () => {
             Ready to Begin Your Transformation?
           </motion.h2>
           <motion.p
-            className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto"
+            className="text-xl text-neutral-600 mb-8 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
