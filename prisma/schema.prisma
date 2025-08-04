@@ -73,7 +73,7 @@ model MindfulnessService {
   duration    String
   level       String
   features    String[] @db.Text
-  calendlyLink String?
+  serviceLink String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
@@ -85,7 +85,7 @@ model CounsellingService {
   duration    String
   level       String
   features    String[] @db.Text
-  calendlyLink String?
+  serviceLink String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
@@ -95,7 +95,7 @@ model BeyondWordsService {
   title       String
   description String   @db.Text
   features    String[] @db.Text
-  calendlyLink String?
+  serviceLink String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
@@ -107,7 +107,20 @@ model CorporateService {
   title       String
   description String   @db.Text
   features    String[] @db.Text
-  calendlyLink String?
+  serviceLink String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Testimonial {
+  id          String   @id @default(cuid())
+  name        String
+  role        String?
+  company     String?
+  content     String   @db.Text
+  rating      Int      @default(5)
+  image       String?
+  isActive    Boolean  @default(true)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }

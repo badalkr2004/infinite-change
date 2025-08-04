@@ -18,8 +18,7 @@ const Preloader = () => {
 
   return (
     <motion.div
-      className="fixed inset-0 z-9999 flex items-center justify-center"
-      style={{ backgroundColor: "#172636" }}
+      className="fixed inset-0 z-9999 flex items-center justify-center bg-ghost-white"
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
@@ -118,8 +117,7 @@ const Preloader = () => {
             INFINITE <span style={{ color: "#e89b6c" }}>CHANGE</span>
           </h2>
           <motion.div
-            className="text-sm mt-2"
-            style={{ color: "#b0b8c1" }}
+            className="text-sm mt-2 text-cinnabar"
             animate={{ opacity: [0.5, 1, 0.5] }}
             transition={{ duration: 1.5, repeat: Infinity }}
           >

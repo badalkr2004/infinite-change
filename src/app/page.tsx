@@ -1,11 +1,12 @@
 "use client";
 import Link from "next/link";
-import { ArrowRight, Users, Target, Lightbulb, Star } from "lucide-react";
+import { ArrowRight, Users, Target, Lightbulb } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import TestimonialsSection from "@/components/TestimonialsSection";
 import Image from "next/image";
 
 const Index = () => {
@@ -15,7 +16,7 @@ const Index = () => {
       title: "Team Coaching",
       description:
         "Transform your team dynamics and unlock collective potential through collaborative coaching sessions.",
-      color: "text-success",
+      color: "text-mantis",
     },
     {
       icon: Target,
@@ -29,24 +30,7 @@ const Index = () => {
       title: "Mindfulness Training",
       description:
         "Develop mindful leadership skills and create more conscious,impactful, productive workplace environments.",
-      color: "text-warning",
-    },
-  ];
-
-  const testimonials = [
-    {
-      name: "Sarah Johnson",
-      role: "CEO, TechCorp",
-      content:
-        "Infinite Change transformed our leadership team. The results were immediate and lasting.",
-      rating: 5,
-    },
-    {
-      name: "Michael Chen",
-      role: "Director, Innovation Lab",
-      content:
-        "The mindfulness training revolutionized our workplace culture. Highly recommend!",
-      rating: 5,
+      color: "text-naples-yellow",
     },
   ];
 
@@ -95,7 +79,7 @@ const Index = () => {
       </motion.div>
 
       {/* Stats Section */}
-      <section className="py-16 bg-foreground text-background">
+      <section className="py-16 bg-ghost-white">
         <motion.div
           className="container mx-auto px-4 sm:px-6 lg:px-8"
           initial={{ opacity: 0, y: 50 }}
@@ -113,10 +97,10 @@ const Index = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
+                <div className="text-3xl md:text-4xl font-bold text-cinnabar mb-2">
                   {stat.number}
                 </div>
-                <div className="text-sm md:text-base opacity-80">
+                <div className="text-sm md:text-base opacity-80 text-mantis">
                   {stat.label}
                 </div>
               </motion.div>
@@ -156,19 +140,19 @@ const Index = () => {
                 <Card className="group hover:shadow-lg transition-all duration-300 border-border hover:border-primary/30 h-full">
                   <CardContent className="p-8 text-center space-y-4">
                     <motion.div
-                      className={`inline-flex p-4 rounded-full bg-linear-to-br from-primary to-secondary ${service.color}`}
+                      className={`inline-flex p-4 rounded-full bg-linear-to-br from-mantis to-cinnabar via-naples-yellow `}
                       whileHover={{ scale: 1.1, rotate: 5 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <service.icon className="h-8 w-8 text-white" />
+                      <service.icon className="h-8 w-8 text-white " />
                     </motion.div>
-                    <h3 className="text-xl font-semibold text-foreground">
+                    <h3 className={`text-xl font-semibold  ${service.color} `}>
                       {service.title}
                     </h3>
                     <p className="text-muted-foreground leading-relaxed">
                       {service.description}
                     </p>
-                    <Button>
+                    <Button className="bg-mantis  text-white">
                       Book Now <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </CardContent>
@@ -180,66 +164,7 @@ const Index = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 ">
-        <div className="container mx-auto">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true, margin: "-50px" }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-mantis mb-4">
-              What Our Clients Say
-            </h2>
-            <p className="text-xl text-muted-foreground">
-              Real stories of transformation and growth
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true, margin: "-50px" }}
-              >
-                <Card className="bg-background border-border h-full">
-                  <CardContent className="p-8 space-y-4">
-                    <motion.div
-                      className="flex space-x-1"
-                      initial={{ opacity: 0, scale: 0 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.5, delay: 0.3 }}
-                      viewport={{ once: true }}
-                    >
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className="h-5 w-5 text-warning fill-current"
-                        />
-                      ))}
-                    </motion.div>
-                    <p className="text-muted-foreground italic leading-relaxed">
-                      &quot;{testimonial.content}&quot;
-                    </p>
-                    <div>
-                      <div className="font-semibold text-foreground">
-                        {testimonial.name}
-                      </div>
-                      <div className="text-sm text-muted-foreground">
-                        {testimonial.role}
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <TestimonialsSection />
 
       {/* CTA Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 ">
@@ -276,11 +201,13 @@ const Index = () => {
             transition={{ duration: 0.6, delay: 0.6 }}
             viewport={{ once: true }}
           >
-            <Button asChild size="lg">
-              <Link href="/contact">Get Started Today</Link>
+            <Button asChild size="lg" className="bg-naples-yellow text-white">
+              <Link href="/contact" className="no-underline">
+                Get Started Today
+              </Link>
             </Button>
-            <Button asChild size="lg">
-              <Link className="no-underline" href="/about">
+            <Button asChild size="lg" className="bg-mantis text-white">
+              <Link href="/about" className="no-underline">
                 Learn More About Us
               </Link>
             </Button>

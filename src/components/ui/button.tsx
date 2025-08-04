@@ -9,31 +9,22 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default:
-          "bg-[#2C3746] text-white hover:bg-[#DC842E]",
+        default: "bg-[#2C3746] text-white hover:bg-[#DC842E]",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline:
-          "bg-[#2C3746] text-white hover:bg-[#DC842E]",
-        secondary:
-          "bg-[#2C3746] text-white hover:bg-[#DC842E]",
-        ghost:
-          "bg-[#2C3746] text-white hover:bg-[#DC842E]",
-        link: 
-          "text-white underline-offset-4 hover:underline",
-        accent:
-          "bg-[#DC842E] text-white hover:bg-[#DC842E]/90",
+        outline: "bg-[#2C3746] text-white hover:bg-[#DC842E]",
+        secondary: "bg-[#2C3746] text-white hover:bg-[#DC842E]",
+        ghost: "bg-[#2C3746] text-white hover:bg-[#DC842E]",
+        link: "text-white underline-offset-4 hover:underline",
+        accent: "bg-[#DC842E] text-white hover:bg-[#DC842E]/90",
         // Admin panel theme variants
-        "admin-primary":
-          "bg-black text-white hover:bg-[#212121]",
+        "admin-primary": "bg-black text-white hover:bg-[#212121]",
         "admin-secondary":
           "bg-white text-black border border-[#e0e0e0] hover:bg-[#f5f5f5]",
         "admin-outline":
           "bg-white text-black border border-[#e0e0e0] hover:bg-[#f5f5f5]",
-        "admin-ghost":
-          "bg-transparent text-black hover:bg-[#f5f5f5]",
-        "admin-accent":
-          "bg-[#424242] text-white hover:bg-[#212121]",
+        "admin-ghost": "bg-transparent text-black hover:bg-[#f5f5f5]",
+        "admin-accent": "bg-[#424242] text-white hover:bg-[#212121]",
       },
       size: {
         default: "h-12 px-6 py-3",
@@ -91,61 +82,59 @@ export interface ButtonProps
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ 
-    className, 
-    variant, 
-    size, 
-    bordered, 
-    rounded,
-    withWrapper = true,
-    wrapperWidth,
-    asChild = false, 
-    ...props 
-  }, ref) => {
+  (
+    {
+      className,
+      variant,
+      size,
+      bordered,
+      rounded,
+      withWrapper = true,
+      wrapperWidth,
+      asChild = false,
+      ...props
+    },
+    ref
+  ) => {
     const Comp = asChild ? Slot : "button";
-    
+
     // For buttons with wrapper, we need to adjust the button styling
-  const buttonStyles = {
-    variant: variant || "default", 
-    size, 
-    bordered: withWrapper ? false : bordered, // No border on inner button when using wrapper
-    rounded: withWrapper ? "none" as const : rounded, // No rounded corners on inner button when using wrapper
-    withWrapper,
-    wrapperWidth,
-    className: withWrapper ? cn("w-full bg-[#2C3746]", className) : className // Ensure gray background for all admin buttons
-  };
-  
-  const buttonElement = (
-    <Comp
-      className={cn(buttonVariants(buttonStyles))}
-      ref={ref}
-      {...props}
-    />
-  );
+    const buttonStyles = {
+      variant: variant || "default",
+      size,
+      bordered: withWrapper ? false : bordered, // No border on inner button when using wrapper
+      rounded: withWrapper ? ("none" as const) : rounded, // No rounded corners on inner button when using wrapper
+      withWrapper,
+      wrapperWidth,
+      className: withWrapper ? cn("w-full bg-[#2C3746]", className) : className, // Ensure gray background for all admin buttons
+    };
 
-  if (withWrapper) {
-    // Check if this is an admin button variant
-    const isAdminVariant = variant?.toString().startsWith('admin-');
-    
-    return (
-      <span
-        className={cn(
-          isAdminVariant
-            ? "inline-block p-[2px] bg-white transition-all duration-300 border border-black rounded-md"
-            : "inline-block p-[4px] bg-white transition-all duration-300 border-[5px] border-[#273548] rounded-[10px]",
-          wrapperWidth === "full" ? "w-full" : "w-auto"
-        )}
-      >
-        {buttonElement}
-      </span>
+    const buttonElement = (
+      <Comp className={cn(buttonVariants(buttonStyles))} ref={ref} {...props} />
     );
-  }
 
-  return buttonElement;
+    if (withWrapper) {
+      // Check if this is an admin button variant
+      const isAdminVariant = variant?.toString().startsWith("admin-");
+
+      return (
+        <span
+          className={cn(
+            isAdminVariant
+              ? "inline-block p-[2px] bg-white transition-all duration-300 border border-black rounded-md"
+              : "inline-block p-[4px] bg-white transition-all duration-300 border-[3px] border-moonstone rounded-[5px]",
+            wrapperWidth === "full" ? "w-full" : "w-auto"
+          )}
+        >
+          {buttonElement}
+        </span>
+      );
+    }
+
+    return buttonElement;
   }
 );
 
 Button.displayName = "Button";
 
 export { Button, buttonVariants };
-

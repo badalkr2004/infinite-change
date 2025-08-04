@@ -7,8 +7,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "db:push": "prisma db push",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
     "seed:admin": "tsx scripts/seed-admin.ts",
-    "db:seed": "tsx prisma/services-seed.ts"
+    "db:seed": "tsx prisma/services-seed.ts",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.1.1",

@@ -6,7 +6,7 @@ import NewsLetter from "./NewsLetter";
 
 const Footer = () => {
   return (
-    <footer className="" style={{ background: "#273548", color: "#FFFFCC" }}>
+    <footer className="bg-ghost-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
@@ -39,7 +39,7 @@ const Footer = () => {
               <li>
                 <Link
                   href="/about"
-                  className="text-sm text-[#FFFFCC] hover:text-[#DC842E] transition-colors no-underline"
+                  className="text-sm  hover:text-[#DC842E] transition-colors no-underline"
                   style={{ textDecoration: "none" }}
                 >
                   About Us
@@ -48,7 +48,7 @@ const Footer = () => {
               <li>
                 <Link
                   href="/corporate-services"
-                  className="text-sm text-[#FFFFCC] hover:text-[#DC842E] transition-colors no-underline"
+                  className="text-sm hover:text-[#DC842E] transition-colors no-underline"
                   style={{ textDecoration: "none" }}
                 >
                   Corporate Services
@@ -57,7 +57,7 @@ const Footer = () => {
               <li>
                 <Link
                   href="/services"
-                  className="text-sm text-[#FFFFCC] hover:text-[#DC842E] transition-colors no-underline"
+                  className="text-sm ] hover:text-[#DC842E] transition-colors no-underline"
                   style={{ textDecoration: "none" }}
                 >
                   Services
@@ -66,7 +66,7 @@ const Footer = () => {
               <li>
                 <Link
                   href="/contact"
-                  className="text-sm text-[#FFFFCC] hover:text-[#DC842E] transition-colors no-underline"
+                  className="text-sm  hover:text-[#DC842E] transition-colors no-underline"
                   style={{ textDecoration: "none" }}
                 >
                   Contact Us

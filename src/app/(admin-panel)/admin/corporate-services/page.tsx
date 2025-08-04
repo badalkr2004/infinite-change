@@ -1,10 +1,16 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Plus, Pencil, Trash2 } from 'lucide-react';
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Plus, Pencil, Trash2 } from "lucide-react";
 import {
   Table,
   TableBody,
@@ -12,7 +18,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
+} from "@/components/ui/table";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -23,8 +29,8 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@/components/ui/alert-dialog';
-import { Badge } from '@/components/ui/badge';
+} from "@/components/ui/alert-dialog";
+import { Badge } from "@/components/ui/badge";
 
 interface CorporateService {
   id: string;
@@ -33,7 +39,7 @@ interface CorporateService {
   title: string;
   description: string;
   features: string[];
-  calendlyLink?: string | null;
+  serviceLink?: string | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -51,17 +57,17 @@ export default function CorporateServicesPage() {
   const fetchServices = async () => {
     try {
       setLoading(true);
-      const response = await fetch('/api/admin/corporate-services');
-      
+      const response = await fetch("/api/admin/corporate-services");
+
       if (!response.ok) {
-        throw new Error('Failed to fetch services');
+        throw new Error("Failed to fetch services");
       }
-      
+
       const data = await response.json();
       setServices(data);
     } catch (error) {
-      console.error('Error fetching corporate services:', error);
-      setError('Failed to load services. Please try again.');
+      console.error("Error fetching corporate services:", error);
+      setError("Failed to load services. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -70,18 +76,18 @@ export default function CorporateServicesPage() {
   const handleDelete = async (id: string) => {
     try {
       const response = await fetch(`/api/admin/corporate-services/${id}`, {
-        method: 'DELETE',
+        method: "DELETE",
       });
 
       if (!response.ok) {
-        throw new Error('Failed to delete service');
+        throw new Error("Failed to delete service");
       }
 
       // Refresh the list after deletion
       fetchServices();
     } catch (error) {
-      console.error('Error deleting service:', error);
-      setError('Failed to delete service. Please try again.');
+      console.error("Error deleting service:", error);
+      setError("Failed to delete service. Please try again.");
     }
   };
 
@@ -97,9 +103,9 @@ export default function CorporateServicesPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold">Corporate Services</h1>
-        <Button 
+        <Button
           className="bg-black text-white hover:text-black hover:bg-neutral-300 rounded"
-          onClick={() => router.push('/admin/corporate-services/new')}
+          onClick={() => router.push("/admin/corporate-services/new")}
         >
           <Plus className="h-4 w-4 mr-2" />
           Add New Service
@@ -122,7 +128,8 @@ export default function CorporateServicesPage() {
         <CardContent>
           {services.length === 0 ? (
             <div className="text-center py-6 text-muted-foreground">
-              No corporate services found. Click &quot;Add New Service&quot; to create one.
+              No corporate services found. Click &quot;Add New Service&quot; to
+              create one.
             </div>
           ) : (
             <Table>
@@ -138,20 +145,31 @@ export default function CorporateServicesPage() {
               <TableBody>
                 {services.map((service) => (
                   <TableRow key={service.id}>
-                    <TableCell className="font-medium">{service.title}</TableCell>
+                    <TableCell className="font-medium">
+                      {service.title}
+                    </TableCell>
                     <TableCell>
-                      <Badge variant="outline" className="bg-secondary text-secondary-foreground">
+                      <Badge
+                        variant="outline"
+                        className="bg-secondary text-secondary-foreground"
+                      >
                         {service.category}
                       </Badge>
                     </TableCell>
                     <TableCell>{service.features.length} features</TableCell>
                     <TableCell>
-                      {service.calendlyLink ? (
-                        <Badge variant="outline" className="bg-primary text-primary-foreground">
+                      {service.serviceLink ? (
+                        <Badge
+                          variant="outline"
+                          className="bg-primary text-primary-foreground"
+                        >
                           Available
                         </Badge>
                       ) : (
-                        <Badge variant="outline" className="bg-muted text-muted-foreground">
+                        <Badge
+                          variant="outline"
+                          className="bg-muted text-muted-foreground"
+                        >
                           Not set
                         </Badge>
                       )}
@@ -162,28 +180,40 @@ export default function CorporateServicesPage() {
                           size="icon"
                           variant="admin-outline"
                           className="bg-black text-white hover:text-black hover:bg-neutral-300 rounded w-9 h-9"
-                          onClick={() => router.push(`/admin/corporate-services/${service.id}`)}
+                          onClick={() =>
+                            router.push(
+                              `/admin/corporate-services/${service.id}`
+                            )
+                          }
                         >
                           <Pencil className="h-4 w-4" />
                           <span className="sr-only">Edit</span>
                         </Button>
                         <AlertDialog>
                           <AlertDialogTrigger asChild>
-                            <Button size="icon" variant="admin-outline" className="bg-black text-white hover:text-black hover:bg-neutral-300 rounded w-9 h-9">
+                            <Button
+                              size="icon"
+                              variant="admin-outline"
+                              className="bg-black text-white hover:text-black hover:bg-neutral-300 rounded w-9 h-9"
+                            >
                               <Trash2 className="h-4 w-4 text-destructive" />
                               <span className="sr-only">Delete</span>
                             </Button>
                           </AlertDialogTrigger>
                           <AlertDialogContent>
                             <AlertDialogHeader>
-                              <AlertDialogTitle>Delete service?</AlertDialogTitle>
+                              <AlertDialogTitle>
+                                Delete service?
+                              </AlertDialogTitle>
                               <AlertDialogDescription>
-                                Are you sure you want to delete &quot;{service.title}&quot;? This action cannot be undone.
+                                Are you sure you want to delete &quot;
+                                {service.title}&quot;? This action cannot be
+                                undone.
                               </AlertDialogDescription>
                             </AlertDialogHeader>
                             <AlertDialogFooter>
                               <AlertDialogCancel>Cancel</AlertDialogCancel>
-                              <AlertDialogAction 
+                              <AlertDialogAction
                                 className="bg-destructive text-destructive-foreground"
                                 onClick={() => handleDelete(service.id)}
                               >

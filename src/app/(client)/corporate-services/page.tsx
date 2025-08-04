@@ -17,7 +17,7 @@ interface CorporateService {
   title: string;
   description: string;
   features: string[];
-  calendlyLink?: string | null;
+  serviceLink?: string | null;
 }
 
 const CorporateServices = () => {
@@ -107,11 +107,11 @@ const CorporateServices = () => {
       <section className="pt-10 md:pt-20 lg:pt-35 pb-5 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-[#ffffff] to-[#ffffff]">
         <div className="container mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            <span className="bg-[#2C3746] to-accent bg-clip-text text-transparent">
+            <span className="bg-moonstone to-naples-yellow bg-clip-text text-transparent">
               Corporate Services
             </span>
           </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-8">
+          <p className="text-xl text-black max-w-3xl mx-auto leading-relaxed mb-8">
             Comprehensive corporate solutions designed to transform your
             organization&apos;s culture, leadership, and performance through
             evidence-based coaching and training programs.
@@ -120,7 +120,7 @@ const CorporateServices = () => {
             <Button
               asChild
               size="sm"
-              className=" bg-[#2C3746] hover:bg-[#DC842E] text-white px-8 py-3 transition-all duration-300"
+              className=" bg-mantis hover:bg-[#DC842E] text-white px-8 py-3 transition-all duration-300"
               style={{ textDecoration: "none" }}
             >
               <Link href="/contact">Schedule Consultation</Link>
@@ -152,7 +152,7 @@ const CorporateServices = () => {
                 >
                   <CardHeader className="pb-4">
                     <div
-                      className={`w-12 h-12 bg-[#2C3746] ${
+                      className={`w-12 h-12 bg-moonstone ${
                         categoryColors[category as keyof typeof categoryColors]
                       } rounded-lg flex items-center justify-center mb-4`}
                     >
@@ -160,7 +160,7 @@ const CorporateServices = () => {
                         className: "h-6 w-6 text-white",
                       })}
                     </div>
-                    <CardTitle className="text-xl text-foreground">
+                    <CardTitle className="text-xl text-black">
                       {service.title}
                     </CardTitle>
                   </CardHeader>
@@ -185,17 +185,17 @@ const CorporateServices = () => {
                       </ul>
                     </div>
 
-                    {service.calendlyLink ? (
+                    {service.serviceLink ? (
                       <CalendlyCustomPopup
-                        url={service?.calendlyLink}
-                        className="mr-4"
+                        url={service?.serviceLink}
+                        className="mr-4 bg-mantis cursor-pointer"
                       >
                         Book Now
                       </CalendlyCustomPopup>
                     ) : (
                       <Button
                         variant="ghost"
-                        className="w-full text-primary hover:bg-[#DC842E] hover:text-white group-hover:bg-[#DC842E] group-hover:text-white transition-colors"
+                        className="w-full text-white cursor-pointer hover:bg-[#DC842E] hover:text-white group-hover:bg-[#DC842E] group-hover:text-white transition-colors bg-mantis"
                       >
                         Book Now
                       </Button>
@@ -209,18 +209,18 @@ const CorporateServices = () => {
       ))}
 
       {/* Process Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 ">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-ghost-white ">
         <div className="container mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-cinnabar mb-4">
               Our Approach
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xl text-green-400 max-w-2xl mx-auto">
               A structured, proven methodology for organizational transformation
             </p>
           </div>
 
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-4 gap-8 ">
             {[
               {
                 step: "01",
@@ -299,7 +299,7 @@ const CorporateServices = () => {
             transition={{ duration: 0.6, delay: 0.6 }}
             viewport={{ once: true }}
           >
-            <Button asChild size="lg">
+            <Button asChild size="lg" className="bg-mantis">
               <Link
                 href="mailto:infinitechange25@gmail.com"
                 className="no-underline"

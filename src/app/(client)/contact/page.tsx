@@ -12,6 +12,7 @@ import Footer from "@/components/Footer";
 import { useForm } from "react-hook-form";
 import { sendContactEmails } from "@/lib/send-mail";
 import { toast } from "sonner";
+import Link from "next/link";
 
 const contactFormSchema = z.object({
   name: z.string().min(2, { message: "Please Enter Your Name" }),
@@ -94,7 +95,7 @@ const Contact = () => {
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-6">
             Get in{" "}
-            <span className="bg-[#2C3746] bg-clip-text text-transparent">
+            <span className="bg-cinnabar bg-clip-text text-transparent">
               Touch
             </span>
           </h1>
@@ -210,7 +211,7 @@ const Contact = () => {
                 <div className="w-[205px] ">
                   <Button
                     type="submit"
-                    className="w-[220px] sm:w-auto bg-[#2C3746] hover:opacity-90"
+                    className="w-[220px] sm:w-auto bg-mantis hover:opacity-90"
                     size="lg"
                     disabled={isSubmitting}
                   >
@@ -243,7 +244,7 @@ const Contact = () => {
                 >
                   <CardContent className="p-4 sm:p-6">
                     <div className="flex items-start space-x-4">
-                      <div className="bg-[#2C3746] p-3 rounded-lg">
+                      <div className="bg-gradient-to-b from-naples-yellow via-mantis to-moonstone p-3 rounded-lg">
                         <info.icon className="h-6 w-6 text-white" />
                       </div>
                       <div>
@@ -263,7 +264,7 @@ const Contact = () => {
               ))}
             </div>
 
-            <Card className="bg-[#2C3746] border-0">
+            <Card className="bg-gradient-to-b from-naples-yellow via-mantis to-moonstone border-0">
               <CardContent className="p-6 text-center">
                 <h3 className="text-xl font-bold text-primary-foreground mb-2">
                   Free Consultation
@@ -272,11 +273,13 @@ const Contact = () => {
                   Schedule a complimentary 30-minute consultation to discuss
                   your goals and how we can help you achieve them.
                 </p>
-                <Button
-                  variant="secondary"
-                  className="bg-background text-foreground hover:bg-background/90"
-                >
-                  Book Free Session
+                <Button asChild size="lg" className="bg-mantis">
+                  <Link
+                    href="mailto:infinitechange@gmail.com"
+                    className="no-underline"
+                  >
+                    Book Free Session
+                  </Link>
                 </Button>
               </CardContent>
             </Card>

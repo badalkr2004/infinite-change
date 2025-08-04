@@ -10,7 +10,7 @@ const corporateServiceSchema = z.object({
   title: z.string().min(1, "Title is required"),
   description: z.string().min(1, "Description is required"),
   features: z.array(z.string()),
-  calendlyLink: z.string().optional().nullable(),
+  serviceLink: z.string().optional().nullable(),
 });
 
 export async function GET() {
@@ -46,7 +46,7 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json();
-    
+
     // Validate request body
     const validatedData = corporateServiceSchema.parse(body);
 
@@ -57,12 +57,9 @@ export async function POST(request: Request) {
     return NextResponse.json(corporateService, { status: 201 });
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return NextResponse.json(
-        { error: error.errors },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: error.errors }, { status: 400 });
     }
-    
+
     console.error("Error creating corporate service:", error);
     return NextResponse.json(
       { error: "Internal server error" },

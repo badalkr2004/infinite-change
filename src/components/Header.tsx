@@ -57,12 +57,8 @@ const Header = () => {
 
           {/* Get Started Button - right */}
           <div className="hidden md:flex min-w-[150px] justify-end mr-4 ">
-            <Button
-              asChild
-              variant="accent"
-              className="font-avenir-regular w-full"
-            >
-              <Link className="no-underline" href="/contact">
+            <Button asChild className="font-avenir-regular w-full">
+              <Link className="no-underline bg-mantis" href="/contact">
                 Get Started
               </Link>
             </Button>
@@ -116,8 +112,7 @@ const Header = () => {
               ))}
               <Button
                 asChild
-                variant="accent"
-                className="w-full font-avenir-regular"
+                className="w-full bg-mantis font-avenir-regular"
                 style={{ textDecoration: "none" }}
               >
                 <Link href="/contact">Get Started</Link>

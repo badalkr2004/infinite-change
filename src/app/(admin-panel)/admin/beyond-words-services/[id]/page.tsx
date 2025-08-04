@@ -1,23 +1,29 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { useParams, useRouter } from 'next/navigation';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { ArrowLeft } from 'lucide-react';
-import { ServiceForm, ServiceFormValues } from '@/components/admin/ServiceForm';
-import { toast } from 'sonner';
+import { useState, useEffect } from "react";
+import { useParams, useRouter } from "next/navigation";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
+import { ServiceForm, ServiceFormValues } from "@/components/admin/ServiceForm";
+import { toast } from "sonner";
 
 interface BeyondWordsService {
   id: string;
   title: string;
   description: string;
   features: string[];
-  calendlyLink: string | null;
+  serviceLink: string | null;
 }
 
 export default function EditBeyondWordsServicePage() {
-  const params = useParams()
+  const params = useParams();
   const [service, setService] = useState<BeyondWordsService | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isFetching, setIsFetching] = useState(true);
@@ -30,19 +36,19 @@ export default function EditBeyondWordsServicePage() {
       try {
         setIsFetching(true);
         const response = await fetch(`/api/admin/beyond-words-services/${id}`);
-        
+
         if (!response.ok) {
           if (response.status === 404) {
-            throw new Error('Service not found');
+            throw new Error("Service not found");
           }
-          throw new Error('Failed to fetch service details');
+          throw new Error("Failed to fetch service details");
         }
-        
+
         const data = await response.json();
         setService(data);
       } catch (error) {
-        console.error('Error fetching service details:', error);
-        setError('Failed to load service details. Please try again.');
+        console.error("Error fetching service details:", error);
+        setError("Failed to load service details. Please try again.");
       } finally {
         setIsFetching(false);
       }
@@ -54,26 +60,26 @@ export default function EditBeyondWordsServicePage() {
   const handleSubmit = async (data: ServiceFormValues) => {
     try {
       setIsLoading(true);
-      
+
       const response = await fetch(`/api/admin/beyond-words-services/${id}`, {
-        method: 'PUT',
+        method: "PUT",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       });
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to update service');
+        throw new Error(errorData.error || "Failed to update service");
       }
 
-      toast.success('Beyond Words service updated successfully');
-      router.push('/admin/beyond-words-services');
+      toast.success("Beyond Words service updated successfully");
+      router.push("/admin/beyond-words-services");
       router.refresh();
     } catch (error) {
-      console.error('Error updating Beyond Words service:', error);
-      toast.error('Failed to update service. Please try again.');
+      console.error("Error updating Beyond Words service:", error);
+      toast.error("Failed to update service. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -96,11 +102,11 @@ export default function EditBeyondWordsServicePage() {
             Back
           </Button>
         </div>
-        
+
         <Card>
           <CardContent className="pt-6">
             <div className="p-4 bg-destructive/15 text-destructive rounded-md">
-              {error || 'Service not found'}
+              {error || "Service not found"}
             </div>
           </CardContent>
         </Card>
@@ -129,7 +135,7 @@ export default function EditBeyondWordsServicePage() {
           <ServiceForm
             initialData={{
               ...service,
-              calendlyLink: service.calendlyLink || undefined
+              serviceLink: service.serviceLink || undefined,
             }}
             onSubmit={handleSubmit}
             isLoading={isLoading}

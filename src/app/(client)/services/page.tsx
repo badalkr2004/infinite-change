@@ -17,7 +17,7 @@ interface MindfulnessService {
   duration: string;
   level: string;
   features: string[];
-  calendlyLink?: string | null;
+  serviceLink?: string | null;
 }
 
 interface CounsellingService {
@@ -27,7 +27,7 @@ interface CounsellingService {
   duration: string;
   level: string;
   features: string[];
-  calendlyLink?: string | null;
+  serviceLink?: string | null;
 }
 
 interface BeyondWordsService {
@@ -35,7 +35,7 @@ interface BeyondWordsService {
   title: string;
   description: string;
   features: string[];
-  calendlyLink?: string | null;
+  serviceLink?: string | null;
 }
 
 const Services = () => {
@@ -117,7 +117,7 @@ const Services = () => {
       <Header />
 
       {/* Hero Section */}
-      <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 bg-[#ffffff] from-secondary via-background to-muted">
+      <section className="pt-12 md:pt-20  md:pb-16 px-4 sm:px-6 lg:px-8 bg-[#ffffff] from-secondary via-background to-muted">
         <div className="container mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
             Our{" "}
@@ -134,12 +134,12 @@ const Services = () => {
       </section>
 
       {/* Mindfulness Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
+      <section className="py-12 md:py-20 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <div className="flex items-center justify-center space-x-3 mb-4">
-              <Brain className="h-8 w-8 text-primary" />
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+              <Brain className="h-8 w-8 text-naples-yellow" />
+              <h2 className="text-3xl md:text-4xl font-bold text-naples-yellow">
                 Mindfulness
               </h2>
             </div>
@@ -192,9 +192,24 @@ const Services = () => {
                       ))}
                     </ul>
                   </div>
-                  <Button className="w-full bg-[#2C3746] from-primary to-accent">
-                    Enroll Now <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
+
+                  {service.serviceLink?.startsWith("https://") ? (
+                    <CalendlyCustomPopup
+                      url={service?.serviceLink}
+                      className="mr-4 bg-mantis"
+                    >
+                      Enroll Now
+                    </CalendlyCustomPopup>
+                  ) : (
+                    <Button asChild className="w-full bg-mantis">
+                      <Link
+                        href={service.serviceLink || ""}
+                        className="no-underline"
+                      >
+                        Enroll Now <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </Button>
+                  )}
                 </CardContent>
               </Card>
             ))}
@@ -261,19 +276,22 @@ const Services = () => {
                       ))}
                     </ul>
                   </div>
-                  {service.calendlyLink ? (
+                  {service.serviceLink &&
+                  service.serviceLink.startsWith("https://") ? (
                     <CalendlyCustomPopup
-                      url={service?.calendlyLink}
-                      className="mr-4"
+                      url={service?.serviceLink}
+                      className="mr-4 bg-mantis"
                     >
-                      Join Program
+                      Join Program <ArrowRight className="ml-2 h-4 w-4" />
                     </CalendlyCustomPopup>
                   ) : (
-                    <Button
-                      variant="ghost"
-                      className="w-full text-primary hover:bg-[#DC842E] hover:text-white group-hover:bg-[#DC842E] group-hover:text-white transition-colors"
-                    >
-                      Join Program
+                    <Button className="w-full bg-mantis text-white hover:bg-[#DC842E] hover:text-white group-hover:bg-[#DC842E] group-hover:text-white transition-colors">
+                      <Link
+                        href={service.serviceLink || ""}
+                        className="no-underline text-white  flex"
+                      >
+                        Join Program <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
                     </Button>
                   )}
                 </CardContent>
@@ -306,7 +324,7 @@ const Services = () => {
                 className="border-border hover:shadow-lg transition-all duration-300 group"
               >
                 <CardHeader className="pb-4">
-                  <div className="w-12 h-12 bg-[#2C3746] from-[#DC842E] to-accent rounded-lg flex items-center justify-center mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-cinnabar to-naples-yellow rounded-lg flex items-center justify-center mb-4">
                     <Star className="h-6 w-6 text-white" />
                   </div>
                   <CardTitle className="text-xl text-foreground">
@@ -333,12 +351,23 @@ const Services = () => {
                       ))}
                     </ul>
                   </div>
-                  <Button
-                    variant="ghost"
-                    className="w-full text-[#ffffff] hover:bg-[#DC842E] hover:text-[#ffffff]-foreground group-hover:bg-[#DC842E] group-hover:text-[#DC842E]-foreground transition-colors"
-                  >
-                    Explore Journey
-                  </Button>
+                  {service.serviceLink?.startsWith("https://") ? (
+                    <CalendlyCustomPopup
+                      url={service?.serviceLink}
+                      className="mr-4 bg-mantis"
+                    >
+                      Enroll Now
+                    </CalendlyCustomPopup>
+                  ) : (
+                    <Button asChild className="w-full bg-mantis">
+                      <Link
+                        href={service.serviceLink || ""}
+                        className="no-underline"
+                      >
+                        Enroll Now <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </Button>
+                  )}
                 </CardContent>
               </Card>
             ))}
@@ -381,12 +410,12 @@ const Services = () => {
             transition={{ duration: 0.6, delay: 0.6 }}
             viewport={{ once: true }}
           >
-            <Button asChild size="lg">
+            <Button asChild size="lg" className="bg-mantis">
               <Link href="/contact" className="no-underline">
                 Book Now
               </Link>
             </Button>
-            <Button asChild size="lg">
+            <Button asChild size="lg" className="bg-mantis">
               <Link href="/about" className="no-underline">
                 Learn More About Us
               </Link>

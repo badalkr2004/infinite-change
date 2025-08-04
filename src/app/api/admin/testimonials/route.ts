@@ -4,13 +4,14 @@ import { getCurrentUser } from "@/lib/jwt";
 import { z } from "zod";
 
 // Schema for validation
-const counsellingServiceSchema = z.object({
-  title: z.string().min(1, "Title is required"),
-  description: z.string().min(1, "Description is required"),
-  duration: z.string().min(1, "Duration is required"),
-  level: z.string().min(1, "Level is required"),
-  features: z.array(z.string()),
-  serviceLink: z.string().optional().nullable(),
+const testimonialSchema = z.object({
+  name: z.string().min(1, "Name is required"),
+  role: z.string().optional().nullable(),
+  company: z.string().optional().nullable(),
+  content: z.string().min(1, "Content is required"),
+  rating: z.number().min(1).max(5).default(5),
+  image: z.string().optional().nullable(),
+  isActive: z.boolean().default(true),
 });
 
 export async function GET() {
@@ -22,13 +23,13 @@ export async function GET() {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const counsellingServices = await prisma.counsellingService.findMany({
+    const testimonials = await prisma.testimonial.findMany({
       orderBy: { createdAt: "desc" },
     });
 
-    return NextResponse.json(counsellingServices);
+    return NextResponse.json(testimonials);
   } catch (error) {
-    console.error("Error fetching counselling services:", error);
+    console.error("Error fetching testimonials:", error);
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 }
@@ -46,21 +47,24 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json();
-
+    
     // Validate request body
-    const validatedData = counsellingServiceSchema.parse(body);
+    const validatedData = testimonialSchema.parse(body);
 
-    const counsellingService = await prisma.counsellingService.create({
+    const testimonial = await prisma.testimonial.create({
       data: validatedData,
     });
 
-    return NextResponse.json(counsellingService, { status: 201 });
+    return NextResponse.json(testimonial, { status: 201 });
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return NextResponse.json({ error: error.errors }, { status: 400 });
+      return NextResponse.json(
+        { error: error.errors },
+        { status: 400 }
+      );
     }
-
-    console.error("Error creating counselling service:", error);
+    
+    console.error("Error creating testimonial:", error);
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 }

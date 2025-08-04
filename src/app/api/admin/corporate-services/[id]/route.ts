@@ -10,7 +10,7 @@ const corporateServiceSchema = z.object({
   title: z.string().min(1, "Title is required"),
   description: z.string().min(1, "Description is required"),
   features: z.array(z.string()),
-  calendlyLink: z.string().optional().nullable(),
+  serviceLink: z.string().optional().nullable(),
 });
 
 export async function GET(
@@ -79,10 +79,7 @@ export async function PUT(
     return NextResponse.json(updatedCorporateService);
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return NextResponse.json(
-        { error: error.errors },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: error.errors }, { status: 400 });
     }
 
     console.error("Error updating corporate service:", error);

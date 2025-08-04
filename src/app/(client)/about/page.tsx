@@ -48,12 +48,12 @@ const About = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             About{" "}
-            <span className="bg-[#2C3746] from-primary to-accent bg-clip-text text-transparent">
+            <span className="bg-gradient-to-b from-moonstone to-naples-yellow via-mantis bg-clip-text text-transparent">
               Infinite Change
             </span>
           </motion.h1>
           <motion.p
-            className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
+            className="text-xl text-moonstone max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}

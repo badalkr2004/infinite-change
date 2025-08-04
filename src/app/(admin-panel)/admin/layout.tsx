@@ -86,7 +86,11 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
       href: '/admin/corporate-services',
       icon: FileText,
     },
-   
+    {
+      name: 'Testimonials',
+      href: '/admin/testimonials',
+      icon: FileText,
+    },
   ];
 
   return (

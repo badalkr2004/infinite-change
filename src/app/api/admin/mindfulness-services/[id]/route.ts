@@ -10,7 +10,7 @@ const mindfulnessServiceSchema = z.object({
   duration: z.string().min(1, "Duration is required"),
   level: z.string().min(1, "Level is required"),
   features: z.array(z.string()),
-  calendlyLink: z.string().optional().nullable(),
+  serviceLink: z.string().optional().nullable(),
 });
 
 export async function GET(
@@ -79,10 +79,7 @@ export async function PUT(
     return NextResponse.json(updatedMindfulnessService);
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return NextResponse.json(
-        { error: error.errors },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: error.errors }, { status: 400 });
     }
 
     console.error("Error updating mindfulness service:", error);

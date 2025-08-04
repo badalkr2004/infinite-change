@@ -69,20 +69,17 @@ const NewsLetter = () => {
     );
   }
   return (
-    <div
-      className="space-y-4"
-      style={{ background: "transparent", color: "#FFFFCC" }}
-    >
+    <div className="space-y-4">
       <h4 className="text-lg font-semibold">Newsletter</h4>
       <p className="text-sm opacity-80">
         Subscribe to get updates on our latest programs and insights.
       </p>
-      <form action="" onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="space-y-2">
           <Input
             type="text"
             placeholder="Your name"
-            className="bg-background/10 border-background/20 text-background placeholder:text-background/60"
+            className=" text-background ring ring-mantis"
             {...register("name")}
           />
           {errors.name && (
@@ -91,7 +88,7 @@ const NewsLetter = () => {
           <Input
             type="email"
             placeholder="Your email"
-            className="bg-background/10 border-background/20 text-background placeholder:text-background/60"
+            className="  text-background ring ring-mantis"
             {...register("email")}
           />
           {errors.email && (
@@ -100,7 +97,7 @@ const NewsLetter = () => {
           <Button
             disabled={isSubmitting}
             type="submit"
-            className="w-full bg-primary hover:bg-primary/90"
+            className="w-full bg-primary hover:bg-primary/90 cursor-pointer"
           >
             {isSubmitting ? "Subscribing..." : "Subscribe"}
             <Send className="ml-2 h-4 w-4" />
